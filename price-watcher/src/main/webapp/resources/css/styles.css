@@ -1,0 +1,39 @@
+.formContainer {
+    float: none;
+    margin: 0 auto;
+    padding-top: 10%;
+}
+
+.input-spacing {
+    width: 100%;
+    margin: 8px 0px;
+    padding: 8px;
+}
+
+.centerText {
+    text-align: center;
+}
+
+.centerForm {
+	margin: 0 auto;
+	width: 50%;
+}
+
+.halfSize {
+	width: 50%;
+}
+
+
+.navBarForm {
+	text-align: right;
+	float: right;
+	padding-top: 8px;
+}
+
+/* Media Breakpoints */
+
+@media only screen and (max-width: 575px) {
+	.btn-block-xs-only {
+    	display: block;
+    	width: 100%;
+}

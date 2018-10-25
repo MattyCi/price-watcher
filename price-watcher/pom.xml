@@ -5,7 +5,7 @@
    <artifactId>price-watcher</artifactId>
    <packaging>war</packaging>
    <version>1.0</version>
-   <name>shopper Maven Webapp</name>
+   <name>price-watcher</name>
    <url>http://maven.apache.org</url>
    <dependencies>
       <dependency>

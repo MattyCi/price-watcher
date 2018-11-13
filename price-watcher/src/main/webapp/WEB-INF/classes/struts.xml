@@ -22,7 +22,12 @@
     </action>
     
     <action name="userLogOut" class="org.matt.login.ShiroLogOutAction">
-    	<result name="success">/index.jsp</result>
+    	<result name="success">/Index.jsp</result>
+        <result name="error">/LoginErrorPage.jsp</result>
+    </action>
+	
+	<action name="sendUrls" class="org.matt.apps.GatherUrls">
+    	<result name="success">/auth/PriceWatch.jsp</result>
         <result name="error">/LoginErrorPage.jsp</result>
     </action>
 	

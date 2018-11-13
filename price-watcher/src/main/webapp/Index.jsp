@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <jsp:include page="/widgets/header.jsp">
-	<jsp:param name="title" value="Save your Recipes"/>
+	<jsp:param name="title" value="Home Page"/>
 </jsp:include>
 <body>
 
@@ -15,17 +15,13 @@
 			<div class="jumbotron">
             	<h1 class="centerText">Price Watcher</h1>
             	<p class="centerText">Get alerted when your favorite items drop in price.</p>
-            	<form action="/price-watcher/GatherList" method = "POST">
+            	<form action="/price-watcher/sendUrls" method = "POST">
                 	<p class="centerText">Start tracking items below, it's easy!</p>
                 	<ol class="centerText">
                 		<li class="centerText">Enter the URLs to your items below</li>
                 		<li class="centerText">Click submit! That's it!</li>
                 	</ol>
-               	 	<input class="form-control input-spacing" type="text" name="item0">
-                	<input class="form-control input-spacing" type="text" name="item1">
-                	<input class="form-control input-spacing" type="text" name="item2">
-                	<input class="form-control input-spacing" type="text" name="item3">
-                	<input class="form-control input-spacing" type="text" name="item4">
+               	 	<input class="form-control input-spacing" type="text" name="paramUrl">
                 	<input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
             	</form>
 			</div>

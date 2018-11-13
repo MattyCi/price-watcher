@@ -16,7 +16,7 @@
 			<div class="jumbotron">
             	<h1 class="centerText">Welcome, <s:property value="username"/>!</h1>
             	<p class="centerText">Get alerted when your favorite items drop in price.</p>
-            	<form action="/price-watcher/GatherList" method = "POST">
+            	<form action="/price-watcher/sendUrls" method = "POST">
                 	Add items:<br>
                	 	<input class="form-control input-spacing" type="text" name="item0">
                 	<input class="form-control input-spacing" type="text" name="item1">

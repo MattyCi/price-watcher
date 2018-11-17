@@ -1,17 +1,13 @@
-.formContainer {
+.containerControls {
     float: none;
-    margin: 0 auto;
-    padding-top: 10%;
+    margin: auto;
+    padding-top: 5%;
 }
 
 .input-spacing {
     width: 100%;
     margin: 8px 0px;
     padding: 8px;
-}
-
-.centerText {
-    text-align: center;
 }
 
 .centerForm {
@@ -23,17 +19,19 @@
 	width: 50%;
 }
 
-
 .navBarForm {
 	text-align: right;
 	float: right;
 	padding-top: 8px;
 }
 
+#login-selector {
+	display: none;
+}
+
+#register-selector {
+	display: none;
+}
+
 /* Media Breakpoints */
 
-@media only screen and (max-width: 575px) {
-	.btn-block-xs-only {
-    	display: block;
-    	width: 100%;
-}

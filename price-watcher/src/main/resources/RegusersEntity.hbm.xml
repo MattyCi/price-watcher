@@ -1,0 +1,18 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="Regusers" table="REGUSERS">
+
+		<id name="userId">
+			<column name="USER_ID" sql-type="bigint(20)" />
+		</id>
+
+		<property name="mailId" column="MAIL_UD" type="string" />
+		<property name="userPass" column="USER_PWORD" type="string" />
+		<property name="salt" column="SALT" type="string" />
+
+	</class>
+</hibernate-mapping>

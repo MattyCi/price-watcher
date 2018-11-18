@@ -12,8 +12,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 	integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 	crossorigin="anonymous"></script>
-<script src="/price-watcher/resources/js/pwUtils.js"></script>
-<script src="/price-watcher/resources/js/pwLoginForm.js"></script>
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="/price-watcher/resources/js/bootstrap.min.js"></script>
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+<script src="/price-watcher/resources/js/pwUtils.js"></script>
+<script src="/price-watcher/resources/js/pwFormValidation.js"></script>
 </head>

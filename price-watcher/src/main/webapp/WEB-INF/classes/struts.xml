@@ -16,13 +16,18 @@
 	</interceptors>
 	<default-interceptor-ref name="shiro-default"/>
 	
-    <action name="userLogIn" class="org.matt.login.ShiroLogInAction">
+    <action name="userLogIn" class="org.matt.auth.ShiroLogInAction">
     	<result name="success">/auth/UserHomePage.jsp</result>
         <result name="error">/LoginErrorPage.jsp</result>
     </action>
     
-    <action name="userLogOut" class="org.matt.login.ShiroLogOutAction">
+    <action name="userLogOut" class="org.matt.auth.ShiroLogOutAction">
     	<result name="success">/Index.jsp</result>
+        <result name="error">/LoginErrorPage.jsp</result>
+    </action>
+	
+	<action name="userRegister" class="org.matt.auth.ShiroRegisterAction">
+    	<result name="success">/auth/UserHomePage.jsp</result>
         <result name="error">/LoginErrorPage.jsp</result>
     </action>
 	

@@ -18,8 +18,8 @@
 				<div class="col-sm">
 					<form id="loginForm" onsubmit="return checkParams(loginForm);"
 						action="/price-watcher/userLogIn" method="POST">
-						<input id="my_tooltip_open" name="username" class="form-control input-spacing"
-							placeholder="Username" type="text"> <input name="password"
+						<input id="login_tooltip_open" name="username" class="form-control input-spacing"
+							placeholder="Email" type="text"> <input name="password"
 							class="form-control input-spacing" placeholder="Password" type="password">
 						<button class="btn btn-primary btn-lg btn-block">Log In</button>
 					</form>
@@ -35,10 +35,10 @@
 					<h1 class="display-3 text-center">Register</h1>
 				</div>
 				<div class="col-sm">
-					<form id="registerForm" onsubmit="return checkParams(loginForm);"
-						action="/price-watcher/userLogIn" method="POST">
-						<input id="my_tooltip_open" name="username" class="form-control input-spacing"
-							placeholder="Username" type="text"> <input name="password"
+					<form id="registerForm" onsubmit="return checkParams(registerForm);"
+						action="/price-watcher/userRegister" method="POST">
+						<input id="register_tooltip_open" name="username" class="form-control input-spacing"
+							placeholder="Email" type="text"> <input name="password"
 							class="form-control input-spacing" placeholder="Password" type="password">
 						<button class="btn btn-primary btn-lg btn-block">Register</button>
 					</form>
@@ -59,7 +59,7 @@
 							<li class="centerText">Enter the URL to your items below</li>
 							<li class="centerText">Click submit! That's it!</li>
 						</ol>
-						<input class="form-control input-spacing" type="text" name="paramUrl"> <input
+						<input class="form-control input-spacing" placeholder="URL" type="text" name="paramUrl"> <input
 							type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
 					</form>
 				</div>
@@ -70,21 +70,9 @@
 	<div id="error_tooltip" class="well">
 		<div class="alert alert-dismissible alert-warning">
 			<button class="close error_tooltip_close">&times;</button>
-			<strong id="login_error_text"></strong>
+			<strong id="error_text"></strong>
 		</div>
 	</div>
-
-	<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('#error_tooltip').popup({
-				type : 'tooltip',
-				transition : '0.3s all 0.1s',
-				offsettop : 75,
-				tooltipanchor : $('#my_tooltip_open')
-			});
-		});
-	</script>
-
+	
 </body>
 </html>

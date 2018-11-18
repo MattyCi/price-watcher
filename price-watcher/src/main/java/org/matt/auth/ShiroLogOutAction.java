@@ -1,0 +1,1 @@
+package org.matt.auth;import org.apache.shiro.subject.Subject;public class ShiroLogOutAction extends ShiroBaseAction {	private static final long serialVersionUID = 1L;	public String execute() {		if (isAuthenticated()) {			System.out.println("logging out user: "+getShiroUser().getPrincipal().toString());			getShiroUser().logout();		}		return "success";	}}

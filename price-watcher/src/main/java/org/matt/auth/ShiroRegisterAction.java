@@ -23,20 +23,18 @@ public class ShiroRegisterAction extends ActionSupport {
 	// confirmation first
 	public String execute() {
 		EmailValidator emailValidator = EmailValidator.getInstance();
-		
+
 		// isValid will also protect against null strings (no null checks needed)
 		if (!emailValidator.isValid(username)) {
 			return PWConstants.error;
 		}
-		
+
 		registerUser(username, password);
 
-		if (errorsOccured) return PWConstants.error;
-		
-		// TODO: Log in user - we should be able to use a struts redirect here
-		
-		
-		
+		if (errorsOccured)
+			return PWConstants.error;
+
+		// User is finally logged in through struts2 action chaining
 		return PWConstants.success;
 	}
 

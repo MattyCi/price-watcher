@@ -1,0 +1,2 @@
+# ensure all java files are committed with proper EOL characters
+*.java text eol=crlf

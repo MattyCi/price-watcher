@@ -27,7 +27,9 @@
     </action>
 	
 	<action name="userRegister" class="org.matt.auth.ShiroRegisterAction">
-    	<result name="success">/auth/UserHomePage.jsp</result>
+    	<result name="success" type="chain">
+    		<param name="actionName">userLogIn</param>
+    	</result>
         <result name="error">/LoginErrorPage.jsp</result>
     </action>
 	

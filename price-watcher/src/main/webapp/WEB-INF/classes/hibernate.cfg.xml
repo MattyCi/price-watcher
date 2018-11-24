@@ -19,7 +19,7 @@
 		<property name="current_session_context_class">thread</property>
 		<property name="hibernate.show_sql">true</property>
 		
-		<mapping class="org.matt.models.Regusers"></mapping>
+		<mapping class="org.matt.models.Reguser"></mapping>
 		
 	</session-factory>
 

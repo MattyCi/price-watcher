@@ -9,6 +9,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.matt.models.Reguser;
 import org.matt.utils.PWConstants;
+import org.passay.CharacterRule;
+import org.passay.EnglishCharacterData;
+import org.passay.LengthRule;
+import org.passay.PasswordData;
+import org.passay.PasswordValidator;
+import org.passay.RuleResult;
+import org.passay.WhitespaceRule;
 import org.matt.utils.HibernateUtil;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -23,13 +30,39 @@ public class ShiroRegisterAction extends ActionSupport {
 	// confirmation first
 	public String execute() {
 		EmailValidator emailValidator = EmailValidator.getInstance();
-
+		
 		// isValid will also protect against null strings (no null checks needed)
 		if (!emailValidator.isValid(username)) {
 			return PWConstants.error;
 		}
 
-		registerUser(username, password);
+		PasswordValidator validator = new PasswordValidator(
+			// length between 8 and 16 characters
+			new LengthRule(8, 16),
+			
+			// at least one upper-case character
+			new CharacterRule(EnglishCharacterData.UpperCase, 1),
+			
+			// at least one lower-case character
+			new CharacterRule(EnglishCharacterData.LowerCase, 1),
+			
+			// at least one digit character
+			new CharacterRule(EnglishCharacterData.Digit, 1),
+			
+			// at least one symbol (special character)
+			new CharacterRule(EnglishCharacterData.Special, 1),
+			
+			// no whitespace
+			new WhitespaceRule());
+		
+		RuleResult result = validator.validate(new PasswordData(password));
+		
+		if (result.isValid()) {
+			registerUser(username, password);
+		} else {
+			System.out.println(validator.getMessages(result));
+			errorsOccured = true;
+		}
 
 		if (errorsOccured)
 			return PWConstants.error;

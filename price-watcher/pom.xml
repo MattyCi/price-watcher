@@ -97,7 +97,11 @@
 			<artifactId>commons-validator</artifactId>
 			<version>1.4.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.passay</groupId>
+			<artifactId>passay</artifactId>
+			<version>1.3.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>price-watcher</finalName>

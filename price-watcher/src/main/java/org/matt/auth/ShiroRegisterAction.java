@@ -26,14 +26,15 @@ public class ShiroRegisterAction extends ActionSupport {
 	private String username;
 	private String password;
 	private boolean errorsOccured = false;
-
-	// TODO: Implement an email-verification step where we send the user a
-	// confirmation first
+	
+	// TODO: Implement an email-verification step where we send the user a confirmation first
+	// TODO: Refactor this into seperate methods
 	public String execute() {
 		EmailValidator emailValidator = EmailValidator.getInstance();
 		
 		// isValid will also protect against null strings (no null checks needed)
 		if (!emailValidator.isValid(username)) {
+			addActionError(PWConstants.invalidEmail);
 			return PWConstants.error;
 		}
 
@@ -58,23 +59,25 @@ public class ShiroRegisterAction extends ActionSupport {
 		
 		RuleResult result = validator.validate(new PasswordData(password));
 		
-		if (result.isValid()) {
-			// first ensure user does not already exist
-			if(UserDAO.getUserByEmail(username) != null) {
-				System.out.println("User already exists!");
-				return PWConstants.error;
-			}
-			
-			registerUser(username, password);
-		} else {
-			System.out.println(validator.getMessages(result));
-			errorsOccured = true;
+		if (!result.isValid()) {
+			addActionError(validator.getMessages(result).get(0));
+			return PWConstants.error;
 		}
 
-		if (errorsOccured)
+		// ensure user does not already exist
+		if(UserDAO.getUserByEmail(username) != null) {
+			addActionError(PWConstants.genericError);
 			return PWConstants.error;
-
-		// User is finally logged in through struts2 action chaining
+		}
+		
+		registerUser(username, password);
+		
+		if (errorsOccured) {
+			addActionError(PWConstants.genericError);
+			return PWConstants.error;
+		}
+			
+		// If we reach this, user will now finally log in through struts2 action chaining
 		return PWConstants.success;
 	}
 
@@ -91,10 +94,10 @@ public class ShiroRegisterAction extends ActionSupport {
 			session.save(user);
 			tx.commit();
 		} catch (HibernateException e) {
+			//TODO: Set up logging here!!!
 			tx.rollback();
 			errorsOccured = true;
 		} finally {
-			System.out.println("closing session");
 			session.close();
 		}
 	}

@@ -4,12 +4,6 @@
     padding-top: 5%;
 }
 
-.input-spacing {
-    width: 100%;
-    margin: 8px 0px;
-    padding: 8px;
-}
-
 .centerForm {
 	margin: 0 auto;
 	width: 50%;
@@ -19,10 +13,10 @@
 	width: 50%;
 }
 
-.navBarForm {
-	text-align: right;
-	float: right;
-	padding-top: 8px;
+.input-spacing {
+    width: 100%;
+    margin: 8px 0px;
+    padding: 8px;
 }
 
 #login-selector {
@@ -31,6 +25,12 @@
 
 #register-selector {
 	display: none;
+}
+
+.navBarForm {
+	text-align: right;
+	float: right;
+	padding-top: 8px;
 }
 
 /* Media Breakpoints */

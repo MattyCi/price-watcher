@@ -18,24 +18,24 @@
 	
     <action name="userLogIn" class="org.matt.auth.ShiroLogInAction">
     	<result name="success">/auth/UserHomePage.jsp</result>
-        <result name="error">/LoginErrorPage.jsp</result>
+        <result name="error">/error/StandardError.jsp</result>
     </action>
     
     <action name="userLogOut" class="org.matt.auth.ShiroLogOutAction">
     	<result name="success">/Index.jsp</result>
-        <result name="error">/LoginErrorPage.jsp</result>
+        <result name="error">/error/StandardError.jsp</result>
     </action>
 	
 	<action name="userRegister" class="org.matt.auth.ShiroRegisterAction">
     	<result name="success" type="chain">
     		<param name="actionName">userLogIn</param>
     	</result>
-        <result name="error">/LoginErrorPage.jsp</result>
+        <result name="error">/error/StandardError.jsp</result>
     </action>
 	
 	<action name="sendUrls" class="org.matt.apps.GatherUrls">
     	<result name="success">/auth/PriceWatch.jsp</result>
-        <result name="error">/LoginErrorPage.jsp</result>
+        <result name="error">/error/StandardError.jsp</result>
     </action>
 	
 	</package>

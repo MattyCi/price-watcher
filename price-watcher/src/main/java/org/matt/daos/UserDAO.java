@@ -11,7 +11,6 @@ public class UserDAO {
 		session.beginTransaction();
 		
 		String query = "from REGUSER where mailID=:email";
-		
 		Reguser user = (Reguser) session.createQuery(query)
 				.setParameter("email", email).uniqueResult();
 		session.getTransaction().commit();

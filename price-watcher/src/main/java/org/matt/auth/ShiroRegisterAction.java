@@ -17,6 +17,7 @@ import org.passay.PasswordValidator;
 import org.passay.RuleResult;
 import org.passay.WhitespaceRule;
 import org.matt.utils.HibernateUtil;
+import org.matt.daos.UserDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -58,6 +59,12 @@ public class ShiroRegisterAction extends ActionSupport {
 		RuleResult result = validator.validate(new PasswordData(password));
 		
 		if (result.isValid()) {
+			// first ensure user does not already exist
+			if(UserDAO.getUserByEmail(username) != null) {
+				System.out.println("User already exists!");
+				return PWConstants.error;
+			}
+			
 			registerUser(username, password);
 		} else {
 			System.out.println(validator.getMessages(result));

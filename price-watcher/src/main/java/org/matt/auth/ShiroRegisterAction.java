@@ -4,6 +4,7 @@ import org.apache.commons.validator.routines.EmailValidator;
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.apache.shiro.subject.Subject;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -21,15 +22,23 @@ import org.matt.daos.UserDAO;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ShiroRegisterAction extends ActionSupport {
+public class ShiroRegisterAction extends ShiroBaseAction {
 	private static final long serialVersionUID = 1L;
 	private String username;
 	private String password;
 	private boolean errorsOccured = false;
+	private Subject shiroUser;
 	
 	// TODO: Implement an email-verification step where we send the user a confirmation first
 	// TODO: Refactor this into seperate methods
 	public String execute() {
+		
+		// ensure the user is not already logged in
+		if (shiroUser != null) {
+			addActionError(PWConstants.alreadyLoggedIn);
+			return PWConstants.error;
+		}
+		
 		EmailValidator emailValidator = EmailValidator.getInstance();
 		
 		// isValid will also protect against null strings (no null checks needed)
@@ -126,5 +135,14 @@ public class ShiroRegisterAction extends ActionSupport {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Subject getShiroUser() {
+		return shiroUser;
+	}
+
+	// used by the interceptor
+	public void setShiroUser(Subject shiroUser) {
+		this.shiroUser = shiroUser;
 	}
 }

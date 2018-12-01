@@ -14,4 +14,10 @@ public final class PWConstants {
 	public static final String invalidEmail = "The email entered is invalid!";
 	public static final String noAccount = "Sorry... we could not log you in. Please check your "
 			+ "credentials and try again.";
+	public static final String alreadyLoggedIn = "It seems you are already logged in as a user. "
+			+ "Please log out and try to register again.";
+	
+	// store information
+	public static final String microcenterStoreName = "Microcenter";
+	public static final int microcenterStoreId = 100;
 }

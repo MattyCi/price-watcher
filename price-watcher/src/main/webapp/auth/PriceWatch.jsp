@@ -13,10 +13,10 @@
         <div class="formContainer col-md-8">
 			<div class="jumbotron">
             	<h1 class="centerText">Price Watcher</h1>
-            	<p class="centerText">Site: <c:out value = "${site}"/></p>
+            	<p class="centerText">Site: <c:out value = "${store.getStoreName()}"/></p>
             	<p class="centerText">Entered URL: <c:out value = "${paramUrl}"/></p>
-            	<p class="centerText">Product Name: <c:out value = "${productName}"/></p>
-            	<p class="centerText">Current Price: <c:out value = "${currentPrice}"/></p>
+            	<p class="centerText">Product Name: <c:out value = "${item.getItemName()}"/></p>
+            	<p class="centerText">Current Price: <c:out value = "${item.getCurrentItemPrice()}"/></p>
 			</div>
         </div>
     </div>

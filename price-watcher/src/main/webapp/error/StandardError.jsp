@@ -9,19 +9,19 @@
 <body>
 	<jsp:include page="/widgets/nav.jsp"></jsp:include>
 
-		<div class="container-fluid">
-			<div class="row">
-				<div class="col-sm bg-danger">
-					<h1 class="display-3 text-center">Uh oh...</h1>
-					<p class="lead text-center">
-						<s:iterator var="error" value="%{actionErrors}">
-        					<s:property value="%{error}"/>
-    					</s:iterator>
-   					</p>
-				</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm bg-danger">
+				<h1 class="display-3 text-center">Uh oh...</h1>
+				<p class="lead text-center">
+					<s:iterator var="error" value="%{actionErrors}">
+						<s:property value="%{error}" />
+					</s:iterator>
+				</p>
 			</div>
 		</div>
-	
+	</div>
+
 	<div class="jumbotron" id="login-selector">
 		<div class="container">
 			<div class="row">
@@ -72,8 +72,8 @@
 							<li class="centerText">Enter the URL to your items below</li>
 							<li class="centerText">Click submit! That's it!</li>
 						</ol>
-						<input class="form-control input-spacing" placeholder="URL" type="text" name="paramUrl"> <input
-							type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+						<input class="form-control input-spacing" placeholder="URL" type="text" name="paramUrl">
+						<input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
 					</form>
 				</div>
 			</div>
@@ -86,6 +86,6 @@
 			<strong id="error_text"></strong>
 		</div>
 	</div>
-	
+
 </body>
 </html>

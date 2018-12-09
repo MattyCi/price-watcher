@@ -1,3 +1,4 @@
+/* Home Page */
 .containerControls {
     float: none;
     margin: auto;
@@ -32,6 +33,9 @@
 	float: right;
 	padding-top: 8px;
 }
+
+/* Tracking Page */
+
 
 /* Media Breakpoints */
 

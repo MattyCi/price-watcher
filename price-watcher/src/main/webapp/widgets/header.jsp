@@ -17,4 +17,5 @@
 <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
 <script src="/price-watcher/resources/js/pwUtils.js"></script>
 <script src="/price-watcher/resources/js/pwFormValidation.js"></script>
+<script src="/price-watcher/resources/js/trackingUtils.js"></script>
 </head>

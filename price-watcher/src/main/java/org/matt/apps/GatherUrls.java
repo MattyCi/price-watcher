@@ -53,8 +53,8 @@ public class GatherUrls extends ShiroBaseAction implements Preparable {
 
 		// populate some of the item data first in case this is a guest user
 		item = new Item();
-		item.setItemName(doc.title());
-		currentItemPrice = Double.parseDouble(doc.select("#pricing").first().ownText());
+		item.setItemName(doc.title()); // TODO: use the span instead of the title
+ 		currentItemPrice = Double.parseDouble(doc.select("#pricing").first().ownText());
 		item.setCurrentItemPrice(currentItemPrice);
 		store = populateStore(new Store(), paramUrl);
 		
@@ -72,6 +72,7 @@ public class GatherUrls extends ShiroBaseAction implements Preparable {
 		// set the rest of the item data for reg users since it matters for them
 		item.setOriginalItemPrice(currentItemPrice);
 		item.setLastItemPrice(currentItemPrice);
+		item.setItemPriceDifference(00.00);
 		item.setDateTracked(currentDateSQL);
 		item.setLastPriceChangeDate(currentDateSQL);
 		item.setStore(store); // foreign key

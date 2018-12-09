@@ -34,7 +34,7 @@ public class ShiroRegisterAction extends ShiroBaseAction {
 	public String execute() {
 		
 		// ensure the user is not already logged in
-		if (shiroUser != null) {
+		if (shiroUser == null) {
 			addActionError(PWConstants.alreadyLoggedIn);
 			return PWConstants.error;
 		}
@@ -47,7 +47,7 @@ public class ShiroRegisterAction extends ShiroBaseAction {
 			return PWConstants.error;
 		}
 
-		PasswordValidator validator = new PasswordValidator(
+		/*PasswordValidator validator = new PasswordValidator(
 			// length between 8 and 16 characters
 			new LengthRule(8, 16),
 			
@@ -71,7 +71,7 @@ public class ShiroRegisterAction extends ShiroBaseAction {
 		if (!result.isValid()) {
 			addActionError(validator.getMessages(result).get(0));
 			return PWConstants.error;
-		}
+		}*/
 
 		// ensure user does not already exist
 		if(UserDAO.getUserByEmail(username) != null) {

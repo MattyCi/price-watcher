@@ -22,6 +22,8 @@ public class Item implements Serializable {
 	private double currentItemPrice;
 	private double lastItemPrice;
 	private double originalItemPrice;
+	private double itemPriceDifference;
+	
 	private Date dateTracked;
 	private Date lastPriceChangeDate;
 	private Reguser reguser;
@@ -71,6 +73,15 @@ public class Item implements Serializable {
 		this.originalItemPrice = originalItemPrice;
 	}
 	
+	@Column(name="ITEM_PRICE_DIFFERENCE")
+	public double getItemPriceDifference() {
+		return itemPriceDifference;
+	}
+
+	public void setItemPriceDifference(double itemPriceDifference) {
+		this.itemPriceDifference = itemPriceDifference;
+	}
+
 	@Column(name="DATE_TRACKED")
 	public Date getDateTracked() {
 		return dateTracked;

@@ -20,8 +20,8 @@
 	       				<a href="<c:out value = "${paramUrl}"/>"><c:out value = "${item.getItemName()}"/></a>
 		           	</p>
 		           	<p class="text-left">Site: <c:out value = "${store.getStoreName()}"/></p>
-		           	<p class="text-left">Original Price (Since first tracked): $<c:out value = "${item.getOriginalItemPrice()}"/></p>
-		           	<p class="text-left">Current Price: $<c:out value = "${item.getCurrentItemPrice()}"/></p>
+		           	<p class="text-left">Original Price (Since first tracked): <fmt:formatNumber value = "${item.getOriginalItemPrice()}" type = "currency"/></p>
+		           	<p class="text-left">Current Price: <fmt:formatNumber value = "${item.getCurrentItemPrice()}" type = "currency"/></p>
 		           	<p class="text-left">Price Difference: <span id="item-difference-0"><fmt:formatNumber value = "${item.getItemPriceDifference()}" type = "currency"/></span></p>
 	           	</div>
 		</div>

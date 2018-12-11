@@ -13,9 +13,9 @@
 
 	<div class="navbar-collapse collapse show" id="navbarColor01" style="">
 		<ul class="navbar-nav mr-auto">
-			<li id="register-active-toggle" class="nav-item"><a id="register-appear" class="nav-link" href="#">Register</a></li>
 			<shiro:notAuthenticated>
-				<li id="login-active-toggle" class="nav-item"><a id="login-appear" class="nav-link" href="#">Log In</a></li>
+				<li id="login-active-toggle" class="nav-item"><a id="" class="nav-link login-appear" href="#">Log In</a></li>
+				<li id="register-active-toggle" class="nav-item"><a id="" class="nav-link register-appear" href="#">Register</a></li>
 			</shiro:notAuthenticated>
 			<shiro:authenticated>
 				<li class="nav-item"><a class="nav-link" href="/price-watcher/userLogOut">Log Out</a></li>

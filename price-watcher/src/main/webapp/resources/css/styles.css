@@ -20,18 +20,16 @@
     padding: 8px;
 }
 
+.login-register-forms {
+	margin: 0px;
+}
+
 #login-selector {
 	display: none;
 }
 
 #register-selector {
 	display: none;
-}
-
-.navBarForm {
-	text-align: right;
-	float: right;
-	padding-top: 8px;
 }
 
 /* Tracking Page */

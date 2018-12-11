@@ -53,6 +53,7 @@ public class Item implements Serializable {
 	public double getCurrentItemPrice() {
 		return currentItemPrice;
 	}
+	
 	public void setCurrentItemPrice(double currentItemPrice) {
 		this.currentItemPrice = currentItemPrice;
 	}

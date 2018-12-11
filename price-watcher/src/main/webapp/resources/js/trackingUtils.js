@@ -1,4 +1,4 @@
-/** Various utils for the tracking page
+/* Various utils for the tracking page
  * 
  */
 
@@ -11,6 +11,6 @@ function setPriceColors() {
 
 	if('$0.00' == currentPriceElement.text()) {
 		currentPriceElement.text("$0.00 (No Change)");
-		currentPriceElement.addClass('text-warning');
+		currentPriceElement.addClass('text-secondary');
 	}
 }

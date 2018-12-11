@@ -4,16 +4,22 @@ var registerSelectorFlag = 0;
 
 // on load events
 window.onload = function() {
-	var loginSelector = document.getElementById("login-appear");
-	var registerSelector = document.getElementById("register-active-toggle");
+	var loginSelectors = document.getElementsByClassName("login-appear");
+	var registerSelectors = document.getElementsByClassName("register-appear");
 	
-	loginSelector.onclick = function() {
-    	displayArea("login");
-    }
+	for (var i = 0; i < loginSelectors.length; i++) {
+        var loginSelector = loginSelectors[i];
+        loginSelector.onclick = function() {
+        	displayArea("login");
+        }
+	}
 	
-	registerSelector.onclick = function() {
-    	displayArea("register");
-    }
+	for (var i = 0; i < registerSelectors.length; i++) {
+        var registerSelector = registerSelectors[i];
+        registerSelector.onclick = function() {
+        	displayArea("register");
+        }
+	}
 }
 
 // TODO: Refactor this trash

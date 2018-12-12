@@ -14,7 +14,7 @@
 		<shiro:notAuthenticated>
 			<div class="row bg-warning p-4">
 				<div class="pl-4 col-sm-8">
-					<p class="lead text-left">
+					<p class="lead text-center">
 						Hey! To continue and track this item's price, you have to register. <a class="register-appear" href="#">Click here to get on that...</a>
 		   			</p>
 		  		</div>

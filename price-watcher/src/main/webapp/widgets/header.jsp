@@ -15,7 +15,8 @@
 <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
 <script src="/price-watcher/resources/js/bootstrap.min.js"></script>
 <script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
-<script src="/price-watcher/resources/js/trackingUtils.js"></script>
 <script src="/price-watcher/resources/js/pwUtils.js"></script>
 <script src="/price-watcher/resources/js/pwFormValidation.js"></script>
+<script src="/price-watcher/resources/js/trackingUtils.js"></script>
+<script src="/price-watcher/resources/js/globalOnLoadFunctions.js"></script>
 </head>

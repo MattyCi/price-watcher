@@ -2,9 +2,9 @@
  * 
  */
 
-window.onload = function() {
+$(document).ready(function() {
 	setPriceColors();
-};
+});
 
 function setPriceColors() {
 	var currentPriceElement = $('#item-difference-0');

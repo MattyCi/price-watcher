@@ -2,6 +2,7 @@ package org.matt.apps;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.shiro.subject.Subject;
 import org.hibernate.HibernateException;
@@ -10,6 +11,7 @@ import org.hibernate.Transaction;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.matt.auth.ShiroBaseAction;
+import org.matt.daos.ItemListDAO;
 import org.matt.daos.UserDAO;
 import org.matt.models.Item;
 import org.matt.models.Reguser;
@@ -33,6 +35,7 @@ public class GatherUrls extends ShiroBaseAction implements Preparable {
 	private Item item = null;
 	private Store store = null;
 	private Document doc = null;
+	private List<Item> itemList = null;
 	
 	Date date = new Date();
 	java.sql.Date currentDateSQL = new java.sql.Date(date.getTime());
@@ -91,6 +94,10 @@ public class GatherUrls extends ShiroBaseAction implements Preparable {
 		} finally {
 			session.close();
 		}
+		
+		// get user's tracked items to be displayed on front-end
+		itemList = ItemListDAO.getItemsByUser(user.getUserID());
+		
 		return PWConstants.success;
 	}
 
@@ -149,5 +156,13 @@ public class GatherUrls extends ShiroBaseAction implements Preparable {
 	// used by the interceptor
 	public void setShiroUser(Subject shiroUser) {
 		this.shiroUser = shiroUser;
+	}
+	
+	public List<Item> getItemList() {
+		return itemList;
+	}
+
+	public void setItemList(List<Item> itemList) {
+		this.itemList = itemList;
 	}
 }

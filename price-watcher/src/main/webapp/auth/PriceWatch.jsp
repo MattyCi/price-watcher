@@ -23,20 +23,41 @@
 		
 		<jsp:include page="/widgets/RegisterAndLoginWidgets.jsp"></jsp:include>
 		
-		<div class="row bg-light p-4">
-           		<div class="col-sm-4 d-flex align-items-center">
-           			<img class="vertical-align rounded mx-auto d-block" src="https://via.placeholder.com/150"/>
-           		</div>
-       			<div class="pl-4 col-sm-8">
-	       			<p class="lead text-left">
-	       				<a href="<c:out value = "${paramUrl}"/>"><c:out value = "${item.getItemName()}"/></a>
-		           	</p>
-		           	<p class="text-left">Site: <c:out value = "${store.getStoreName()}"/></p>
-		           	<p class="text-left">Original Price (Since first tracked): <fmt:formatNumber value = "${item.getOriginalItemPrice()}" type = "currency"/></p>
-		           	<p class="text-left">Current Price: <fmt:formatNumber value = "${item.getCurrentItemPrice()}" type = "currency"/></p>
-		           	<p class="text-left">Price Change: <span id="item-price-change-0"><fmt:formatNumber value = "${item.getItemPriceDifference()}" type = "currency"/></span></p>
-	           	</div>
-		</div>
+		<shiro:notAuthenticated>
+			<div class="row bg-light p-4">
+	           		<div class="col-sm-4 d-flex align-items-center">
+	           			<img class="vertical-align rounded mx-auto d-block" src="https://via.placeholder.com/150"/>
+	           		</div>
+	       			<div class="pl-4 col-sm-8">
+		       			<p class="lead text-left">
+		       				<a href="<c:out value = "${paramUrl}"/>"><c:out value = "${item.getItemName()}"/></a>
+			           	</p>
+			           	<p class="text-left">Site: <c:out value = "${store.getStoreName()}"/></p>
+			           	<p class="text-left">Original Price (Since first tracked): <fmt:formatNumber value = "${item.getOriginalItemPrice()}" type = "currency"/></p>
+			           	<p class="text-left">Current Price: <fmt:formatNumber value = "${item.getCurrentItemPrice()}" type = "currency"/></p>
+			           	<p class="text-left">Price Change: <span id="item-price-change-0"><fmt:formatNumber value = "${item.getItemPriceDifference()}" type = "currency"/></span></p>
+		           	</div>
+			</div>
+		</shiro:notAuthenticated>
+		
+		<shiro:authenticated>
+		<c:forEach items="${itemList}" var="item" varStatus="loop"> 
+		  <div class="row bg-light p-4">
+	           		<div class="col-sm-4 d-flex align-items-center">
+	           			<img class="vertical-align rounded mx-auto d-block" src="https://via.placeholder.com/150"/>
+	           		</div>
+	       			<div class="pl-4 col-sm-8">
+		       			<p class="lead text-left">
+		       				<a href="<c:out value = "${paramUrl}"/>"><c:out value = "${item.getItemName()}"/></a>
+			           	</p>
+			           	<p class="text-left">Site: <c:out value = "${item.getStore().getStoreName()}"/></p>
+			           	<p class="text-left">Original Price (Since first tracked): <fmt:formatNumber value = "${item.getOriginalItemPrice()}" type = "currency"/></p>
+			           	<p class="text-left">Current Price: <fmt:formatNumber value = "${item.getCurrentItemPrice()}" type = "currency"/></p>
+			           	<p class="text-left">Price Change: <span class="item-price-change-selector"><fmt:formatNumber value = "${item.getItemPriceDifference()}" type = "currency"/></span></p>
+		           	</div>
+			</div>
+		</c:forEach>
+		</shiro:authenticated>
 	</div>
        
 </body>

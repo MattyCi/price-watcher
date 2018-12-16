@@ -7,19 +7,22 @@ $(document).ready(function() {
 });
 
 function setPriceColors() {
-	var priceChangeElement = $('#item-price-change-0');
-	// get double value from dollar amount string
-	var priceChange = Number(priceChangeElement.text().replace(/[^0-9.-]+/g,""));
+	var priceChangeElements = $('.item-price-change-selector');
 	
-	if(0 == priceChange) {
-		console.log("price is the same!");
-		priceChangeElement.text("$0.00");
-		priceChangeElement.addClass('text-secondary');
-	} else if (priceChange > 0) {
-		console.log("price increased!");
-		priceChangeElement.addClass('text-success');
-	} else {
-		console.log("price decreased!");
-		priceChangeElement.addClass('text-danger');
-	}
+	priceChangeElements.each(function() {
+		// get double value from dollar amount string
+		var priceChange = Number($(this).text().replace(/[^0-9.-]+/g,""));
+		
+		if(0 == priceChange) {
+			console.log("price is the same!");
+			$(this).text("$0.00");
+			$(this).addClass('text-secondary');
+		} else if (priceChange > 0) {
+			console.log("price increased!");
+			$(this).addClass('text-success');
+		} else {
+			console.log("price decreased!");
+			$(this).addClass('text-danger');
+		}
+	});
 }

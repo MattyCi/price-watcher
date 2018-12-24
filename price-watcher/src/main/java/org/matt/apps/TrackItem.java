@@ -2,24 +2,19 @@ package org.matt.apps;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
-import org.apache.shiro.subject.Subject;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+
 import org.matt.auth.ShiroBaseAction;
-import org.matt.daos.ItemListDAO;
-import org.matt.daos.UserDAO;
 import org.matt.models.Item;
 import org.matt.models.Reguser;
 import org.matt.models.Store;
 import org.matt.utils.HibernateUtil;
 import org.matt.utils.PWConstants;
-
-import com.opensymphony.xwork2.Preparable;
 
 /**
  * This class acts as the main processor when a user wants to track a new item.
@@ -27,60 +22,45 @@ import com.opensymphony.xwork2.Preparable;
  * 
  * @author Matt
  */
-public class GatherUrls extends ShiroBaseAction implements Preparable {
-	private static final long serialVersionUID = 1L;
+public class TrackItem extends ShiroBaseAction {
+	private static final long serialVersionUID = 2782991788402520731L;
 	private String paramUrl;
 	private Double currentItemPrice;
-	private Subject shiroUser;
 	private Item item = null;
+	private Reguser regUser = null;
 	private Store store = null;
 	private Document doc = null;
-	private List<Item> itemList = null;
+	private char userType;
 	
 	Date date = new Date();
 	java.sql.Date currentDateSQL = new java.sql.Date(date.getTime());
 
-	public void prepare() {
-		// TODO: Implement proper logging instead of using sysout...
-		System.out.println("Here is the parameter: " + paramUrl);
-	}
-
 	public String execute() {
-
+		
 		try {
+			System.out.println("paramUrl is: "+paramUrl);
 			doc = Jsoup.connect(paramUrl).get();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		// populate some of the item data first in case this is a guest user
+		
+		// populate item data 
 		item = new Item();
 		item.setItemName(doc.title()); // TODO: use the span instead of the title
- 		currentItemPrice = Double.parseDouble(doc.select("#pricing").first().ownText());
+		currentItemPrice = Double.parseDouble(doc.select("#pricing").first().ownText());
 		item.setCurrentItemPrice(currentItemPrice);
-		store = populateStore(new Store(), paramUrl);
-		
-		System.out.println("productName is: " + item.getItemName());
-		System.out.println("currentPrice is: " + item.getCurrentItemPrice());
-
-		// finished if the user is a guest
-		if (shiroUser.getPrincipal() == null) {
-			System.out.println("Guest user running command!");
-			return PWConstants.success;
-		}
-
-		Reguser user = UserDAO.getUserByEmail(shiroUser.getPrincipal().toString());
-
-		// set the rest of the item data for reg users since it matters for them
 		item.setOriginalItemPrice(currentItemPrice);
 		item.setLastItemPrice(currentItemPrice);
 		item.setItemPriceDifference(00.00);
 		item.setDateTracked(currentDateSQL);
 		item.setLastPriceChangeDate(currentDateSQL);
+		
+		store = populateStore(new Store(), paramUrl);
 		item.setStore(store); // foreign key
-		item.setReguser(user); // foreign key
+		item.setReguser(regUser); // foreign key
 
+		// actually add the record to the database
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
 		try {
@@ -94,10 +74,6 @@ public class GatherUrls extends ShiroBaseAction implements Preparable {
 		} finally {
 			session.close();
 		}
-		
-		// get user's tracked items to be displayed on front-end
-		itemList = ItemListDAO.getItemsByUser(user.getUserID());
-		
 		return PWConstants.success;
 	}
 
@@ -116,7 +92,7 @@ public class GatherUrls extends ShiroBaseAction implements Preparable {
 		}
 		return store;
 	}
-
+	
 	public Double getCurrentItemPrice() {
 		return currentItemPrice;
 	}
@@ -149,20 +125,21 @@ public class GatherUrls extends ShiroBaseAction implements Preparable {
 		this.paramUrl = paramUrl;
 	}
 
-	public Subject getShiroUser() {
-		return shiroUser;
-	}
-
 	// used by the interceptor
-	public void setShiroUser(Subject shiroUser) {
-		this.shiroUser = shiroUser;
+	public void setRegUser(Reguser regUser) {
+		this.regUser = regUser;
 	}
 	
-	public List<Item> getItemList() {
-		return itemList;
+	public Reguser getRegUser() {
+		return regUser;
 	}
 
-	public void setItemList(List<Item> itemList) {
-		this.itemList = itemList;
+	public char getUserType() {
+		return userType;
 	}
+
+	public void setUserType(char userType) {
+		this.userType = userType;
+	}
+	
 }

@@ -8,8 +8,10 @@
     
     <interceptors>
 		<interceptor name="shiroUser" class="org.matt.interceptor.ShiroUserInterceptor"/>
+		<interceptor name="userValidator" class="org.matt.interceptor.UserValidatorInterceptor"/>
 		<interceptor-stack name="shiro-default">
-			<interceptor-ref name="shiroUser"/>
+			<!-- <interceptor-ref name="shiroUser"/> -->
+			<interceptor-ref name="userValidator"/>
 			<interceptor-ref name="params"/> <!-- Run the params interceptor before the default stack. This allows us to access param values in our prepare() methods. -->
 			<interceptor-ref name="defaultStack"/>
 		</interceptor-stack>
@@ -33,8 +35,16 @@
         <result name="error">/error/StandardError.jsp</result>
     </action>
 	
-	<action name="sendUrls" class="org.matt.apps.GatherUrls">
-    	<result name="success">/auth/PriceWatch.jsp</result>
+	<action name="trackItem" class="org.matt.apps.TrackItem">
+		<!-- use redirectAction type here to prevent form resubmits on page refresh -->
+    	<result name="success" type="redirectAction">
+    		<param name="actionName">itemTrackingListPage</param>
+    	</result>
+        <result name="error">/error/StandardError.jsp</result>
+    </action>
+	
+	<action name="itemTrackingListPage" class="org.matt.apps.TrackingPageBuilder">
+        <result name="success">/auth/PriceWatch.jsp</result>
         <result name="error">/error/StandardError.jsp</result>
     </action>
 	

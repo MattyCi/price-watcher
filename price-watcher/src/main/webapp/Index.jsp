@@ -18,7 +18,7 @@
 					<h1 class="display-3 text-center">Price Watcher</h1>
 					<p class="text-center lead">Get alerted when your favorite items drop in price. Start
 						tracking items below, it's easy!</p>
-					<form action="/price-watcher/sendUrls" method="POST">
+					<form action="/price-watcher/trackItem" method="POST">
 						<ol class="centerText">
 							<li class="centerText">Enter the URL to your items below</li>
 							<li class="centerText">Click submit! That's it!</li>

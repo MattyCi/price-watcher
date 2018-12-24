@@ -9,6 +9,13 @@ public final class PWConstants {
 	public static final String success = "success";
 	public static final String error = "error";
 	
+	// user values
+	public static final char guestUserType = 'G';
+	public static final char regUserType = 'R';
+	
+	// cookie values
+	public static final String guestCookieName = "guestID";
+	
 	// error messages
 	public static final String genericError = "Sorry, we could not process your request.";
 	public static final String invalidEmail = "The email entered is invalid!";

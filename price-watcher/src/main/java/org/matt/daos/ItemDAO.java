@@ -6,7 +6,11 @@ import org.hibernate.Session;
 import org.matt.models.Item;
 import org.matt.utils.HibernateUtil;
 
-public class ItemListDAO {
+/**
+ * This DAO contains methods for performing CRUD operations on items.
+ * @author Matt
+ */
+public class ItemDAO {
 	public static List<Item> getItemsByUser(int userID) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();

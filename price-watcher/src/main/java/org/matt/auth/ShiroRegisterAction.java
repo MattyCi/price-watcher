@@ -21,15 +21,13 @@ public class ShiroRegisterAction extends ShiroBaseAction {
 	private String password;
 	private boolean errorsOccured = false;
 	private Subject shiroUser;
-	private char userType;
-	private Reguser regUser;
 	
 	// TODO: Implement an email-verification step where we send the user a confirmation first
 	// TODO: Convert guest users to registered users if their guest cookie exists
 	public String execute() {
 		
 		// ensure the user is not already logged in
-		if (this.shiroUser == null) {
+		if (this.shiroUser != null) {
 			addActionError(PWConstants.alreadyLoggedIn);
 			return PWConstants.error;
 		}
@@ -104,32 +102,6 @@ public class ShiroRegisterAction extends ShiroBaseAction {
 
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	// used by the interceptor
-	public void setShiroUser(Subject shiroUser) {
-		this.shiroUser = shiroUser;
-	}
-	
-	public Subject getShiroUser() {
-		return shiroUser;
-	}	
-	
-	// used by the interceptor
-	public void setRegUser(Reguser regUser) {
-		this.regUser = regUser;
-	}
-
-	public Reguser getRegUser() {
-		return regUser;
-	}
-
-	public char getUserType() {
-		return userType;
-	}
-
-	public void setUserType(char userType) {
-		this.userType = userType;
 	}
 	
 }

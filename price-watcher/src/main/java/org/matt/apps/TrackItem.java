@@ -11,7 +11,6 @@ import org.jsoup.nodes.Document;
 
 import org.matt.auth.ShiroBaseAction;
 import org.matt.models.Item;
-import org.matt.models.Reguser;
 import org.matt.models.Store;
 import org.matt.utils.HibernateUtil;
 import org.matt.utils.PWConstants;
@@ -27,10 +26,8 @@ public class TrackItem extends ShiroBaseAction {
 	private String paramUrl;
 	private Double currentItemPrice;
 	private Item item = null;
-	private Reguser regUser = null;
 	private Store store = null;
 	private Document doc = null;
-	private char userType;
 	
 	Date date = new Date();
 	java.sql.Date currentDateSQL = new java.sql.Date(date.getTime());
@@ -58,7 +55,7 @@ public class TrackItem extends ShiroBaseAction {
 		
 		store = populateStore(new Store(), paramUrl);
 		item.setStore(store); // foreign key
-		item.setReguser(regUser); // foreign key
+		item.setReguser(this.getRegUser()); // foreign key
 
 		// actually add the record to the database
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
@@ -93,53 +90,12 @@ public class TrackItem extends ShiroBaseAction {
 		return store;
 	}
 	
-	public Double getCurrentItemPrice() {
-		return currentItemPrice;
-	}
-
-	public void setCurrentItemPrice(Double currentPrice) {
-		this.currentItemPrice = currentPrice;
-	}
-
-	public Item getItem() {
-		return item;
-	}
-
-	public void setItem(Item item) {
-		this.item = item;
-	}
-	
-	public Store getStore() {
-		return store;
-	}
-
-	public void setStore(Store store) {
-		this.store = store;
-	}
-	
 	public String getParamUrl() {
 		return paramUrl;
 	}
 
 	public void setParamUrl(String paramUrl) {
 		this.paramUrl = paramUrl;
-	}
-
-	// used by the interceptor
-	public void setRegUser(Reguser regUser) {
-		this.regUser = regUser;
-	}
-	
-	public Reguser getRegUser() {
-		return regUser;
-	}
-
-	public char getUserType() {
-		return userType;
-	}
-
-	public void setUserType(char userType) {
-		this.userType = userType;
 	}
 	
 }

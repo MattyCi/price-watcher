@@ -9,7 +9,6 @@
 </jsp:include>
 <body>
 	<jsp:include page="/widgets/nav.jsp"></jsp:include>
-	<jsp:useBean id="ItemJspFunctions" class="org.matt.utils.ItemJspFunctions"/>
 	
 	<div class="container-fluid">
 	<shiro:notAuthenticated>

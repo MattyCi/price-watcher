@@ -10,6 +10,7 @@ public final class PWConstants {
 	public static final String error = "error";
 	
 	// user values
+	public static final char newGuestUserType = 'N';
 	public static final char guestUserType = 'G';
 	public static final char regUserType = 'R';
 	

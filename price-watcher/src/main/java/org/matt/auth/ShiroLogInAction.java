@@ -6,6 +6,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.matt.models.Reguser;
 import org.matt.utils.PWConstants;
 
 public class ShiroLogInAction extends ActionSupport implements Preparable {
@@ -13,6 +14,8 @@ public class ShiroLogInAction extends ActionSupport implements Preparable {
 	private String username;
 	private String password;
 	private transient Subject shiroUser;
+	private char userType;
+	private Reguser regUser;
 
 	public void prepare() throws Exception {
 		this.shiroUser = SecurityUtils.getSubject();
@@ -67,4 +70,22 @@ public class ShiroLogInAction extends ActionSupport implements Preparable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	// used by the interceptor
+	public void setRegUser(Reguser regUser) {
+		this.regUser = regUser;
+	}
+
+	public Reguser getRegUser() {
+		return regUser;
+	}
+
+	public char getUserType() {
+		return userType;
+	}
+
+	public void setUserType(char userType) {
+		this.userType = userType;
+	}
+	
 }

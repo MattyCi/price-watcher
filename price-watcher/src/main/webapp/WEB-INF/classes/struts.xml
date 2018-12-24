@@ -42,7 +42,7 @@
     </action>
 	
 	<action name="itemTrackingListPage" class="org.matt.apps.TrackingPageBuilder">
-        <result name="success">/auth/PriceWatch.jsp</result>
+        <result name="success">/auth/ItemTrackingPage.jsp</result>
         <result name="error">/error/StandardError.jsp</result>
     </action>
 	

@@ -58,7 +58,7 @@ public class UserValidatorInterceptor implements Interceptor {
 					userType = PWConstants.newGuestUserType;
 					regUser = new Reguser();
 					UserUtils.createGuestUser(regUser);
-s
+
 					// set guest cookies
 					Cookie guestIDCookie = new Cookie(PWConstants.guestIDCookieName, regUser.getUserID().toString());
 					guestIDCookie.setPath("/");

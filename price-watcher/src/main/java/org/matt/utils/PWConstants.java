@@ -15,7 +15,8 @@ public final class PWConstants {
 	public static final char regUserType = 'R';
 	
 	// cookie values
-	public static final String guestCookieName = "guestID";
+	public static final String guestIDCookieName = "guestID";
+	public static final String guestTokenCookieName = "guestToken";
 	
 	// error messages
 	public static final String genericError = "Sorry, we could not process your request.";
@@ -24,7 +25,8 @@ public final class PWConstants {
 			+ "credentials and try again.";
 	public static final String alreadyLoggedIn = "It seems you are already logged in as a user. "
 			+ "Please log out and try to register again.";
-	
+	public static final String cookieTampering = "We had some issues reading your browser cookies. "
+	+ "Please clear your cookies and try again.";
 	// store information
 	public static final String microcenterStoreName = "Microcenter";
 	public static final int microcenterStoreId = 100;

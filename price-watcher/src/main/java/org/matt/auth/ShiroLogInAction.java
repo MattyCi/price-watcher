@@ -2,13 +2,16 @@ package org.matt.auth;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.Preparable;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.matt.models.Reguser;
 import org.matt.utils.PWConstants;
+import org.matt.utils.UserUtils;
 
+// TODO: Make this extend ShiroBaseAction
 public class ShiroLogInAction extends ActionSupport implements Preparable {
 	private static final long serialVersionUID = 1L;
 	private String username;
@@ -33,6 +36,8 @@ public class ShiroLogInAction extends ActionSupport implements Preparable {
 				token.setRememberMe(true);
 				try {
 					this.shiroUser.login(token);
+					UserUtils.deleteGuestCookies();
+					
 					result = PWConstants.success;
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,6 +45,7 @@ public class ShiroLogInAction extends ActionSupport implements Preparable {
 					return PWConstants.error;
 				}
 			} else if (this.shiroUser.isAuthenticated()) {
+				UserUtils.deleteGuestCookies();
 				result = PWConstants.success;
 			}
 		}

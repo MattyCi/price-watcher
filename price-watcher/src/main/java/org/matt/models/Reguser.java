@@ -18,7 +18,9 @@ public class Reguser implements Serializable {
 	private String mailID;
 	private String userPassword;
 	private String salt;
-
+	private String userToken;
+	private String userTokenSalt;
+	
 	/*No-arg constructor*/
 	public Reguser() {
 
@@ -61,4 +63,14 @@ public class Reguser implements Serializable {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
+	
+	@Column(name="USER_TOKEN")
+	public String getUserToken() {
+		return userToken;
+	}
+
+	public void setUserToken(String userToken) {
+		this.userToken = userToken;
+	}
+	
 }

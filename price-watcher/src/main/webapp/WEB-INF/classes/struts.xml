@@ -5,7 +5,7 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
   	<package name="default" namespace="/" extends="struts-default">
-    
+
     <interceptors>
 		<interceptor name="userValidator" class="org.matt.interceptor.UserValidatorInterceptor"/>
 		<interceptor-stack name="shiro-default">
@@ -15,6 +15,10 @@
 		</interceptor-stack>
 	</interceptors>
 	<default-interceptor-ref name="shiro-default"/>
+	
+	<global-results>
+	    <result name="stdError">/error/StandardError.jsp</result>
+	</global-results>
 	
     <action name="userLogIn" class="org.matt.auth.ShiroLogInAction">
     	<result name="success">/auth/UserHomePage.jsp</result>

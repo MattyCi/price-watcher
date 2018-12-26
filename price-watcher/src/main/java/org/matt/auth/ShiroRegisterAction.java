@@ -1,11 +1,9 @@
 package org.matt.auth;
 
 import org.apache.commons.validator.routines.EmailValidator;
-import org.apache.shiro.subject.Subject;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.matt.models.Reguser;
 import org.matt.utils.PWConstants;
 import org.matt.utils.UserUtils;
 import org.passay.PasswordData;
@@ -16,18 +14,17 @@ import org.matt.utils.HibernateUtil;
 import org.matt.daos.UserDAO;
 
 public class ShiroRegisterAction extends ShiroBaseAction {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -6328260956217475993L;
 	private String username;
 	private String password;
 	private boolean errorsOccured = false;
-	private Subject shiroUser;
 	
 	// TODO: Implement an email-verification step where we send the user a confirmation first
 	// TODO: Convert guest users to registered users if their guest cookie exists
 	public String execute() {
 		
 		// ensure the user is not already logged in
-		if (this.shiroUser != null) {
+		if (this.shiroUser.isAuthenticated()) {
 			addActionError(PWConstants.alreadyLoggedIn);
 			return PWConstants.error;
 		}
@@ -56,7 +53,10 @@ public class ShiroRegisterAction extends ShiroBaseAction {
 			return PWConstants.error;
 		}
 		
+		// convert guest user to registered user
 		registerUser(username, password);
+		
+		this.userType = PWConstants.regUserType;
 		
 		if (errorsOccured) {
 			addActionError(PWConstants.genericError);
@@ -68,16 +68,15 @@ public class ShiroRegisterAction extends ShiroBaseAction {
 	}
 
 	public void registerUser(String email, String plainTextPassword) {
-		Reguser user = new Reguser();
-		user.setMailID(email);
+		this.regUser.setMailID(email);
 
-		UserUtils.generatePassword(user, plainTextPassword);
+		UserUtils.generatePassword(this.regUser, plainTextPassword);
 
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();
-			session.save(user);
+			session.update(this.regUser);
 			tx.commit();
 		} catch (HibernateException e) {
 			//TODO: Set up logging here!!!

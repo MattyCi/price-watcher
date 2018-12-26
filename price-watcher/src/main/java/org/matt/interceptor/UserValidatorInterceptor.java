@@ -1,6 +1,7 @@
 package org.matt.interceptor;
 
 import com.opensymphony.xwork2.ActionInvocation;
+import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.interceptor.Interceptor;
 
 import javax.servlet.http.Cookie;
@@ -37,6 +38,7 @@ public class UserValidatorInterceptor implements Interceptor {
 			Subject shiroUser = SecurityUtils.getSubject();
 			char userType;
 			String guestUserIDFromCookie;
+			String guestUserTokenFromCookie;
 			Reguser regUser;
 
 			/*
@@ -57,14 +59,36 @@ public class UserValidatorInterceptor implements Interceptor {
 					regUser = new Reguser();
 					UserUtils.createGuestUser(regUser);
 
-					// set guest ID cookie
-					Cookie guestCookie = new Cookie(PWConstants.guestCookieName, regUser.getUserID().toString());
-					guestCookie.setPath("/");
-					guestCookie.setMaxAge(60 * 60 * 24 * 365); // make the cookie last a year
-					ServletActionContext.getResponse().addCookie(guestCookie);
+					// set guest cookies
+					Cookie guestIDCookie = new Cookie(PWConstants.guestIDCookieName, regUser.getUserID().toString());
+					guestIDCookie.setPath("/");
+					guestIDCookie.setMaxAge(60 * 60 * 24 * 365);
+					
+					Cookie guestTokenCookie = new Cookie(PWConstants.guestTokenCookieName, regUser.getUserToken());
+					guestTokenCookie.setPath("/");
+					guestTokenCookie.setMaxAge(60 * 60 * 24 * 365);
+					
+					ServletActionContext.getResponse().addCookie(guestIDCookie);
+					ServletActionContext.getResponse().addCookie(guestTokenCookie);
 				} else {
 					// user is not registered but they already have a guest ID
 					System.out.println("user is not registered but they already have a guest ID");
+					
+					guestUserTokenFromCookie = UserUtils
+							.retrieveGuestUserTokenFromCookies(ServletActionContext.getRequest().getCookies());
+					
+					/**
+					 * Validate the cookies are authentic. Ensure the user ID is not
+					 * of a registered user, then ensure the token matches the ID.
+					 */
+					if (UserDAO.isUserRegistered(Integer.parseInt(guestUserIDFromCookie))
+							|| !UserDAO.isTokenValid(Integer.parseInt(guestUserIDFromCookie), guestUserTokenFromCookie)) {
+						System.out.println("cookie tampering detected!");
+						
+						((ActionSupport) actionInvocation.getAction()).addActionError(PWConstants.cookieTampering);
+						return "stdError";
+					}
+
 					regUser = UserDAO.getUserByID(Integer.parseInt(guestUserIDFromCookie));
 					userType = PWConstants.guestUserType;
 				}
@@ -78,6 +102,7 @@ public class UserValidatorInterceptor implements Interceptor {
 			actionInvocation.getStack().setValue("userType", userType);
 			actionInvocation.getStack().setValue("regUser", regUser);
 			actionInvocation.getStack().setValue("shiroUser", shiroUser);
+			System.out.println("shiroUser is: "+shiroUser.getPrincipal());
 		}
 		return actionInvocation.invoke();
 

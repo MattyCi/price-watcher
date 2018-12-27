@@ -32,7 +32,17 @@
 	</shiro:notAuthenticated>
 		
 		<jsp:include page="/widgets/RegisterAndLoginWidgets.jsp"></jsp:include>
-					
+		
+		<div class="row bg-light p-4 justify-content-center">
+       		<div class="pl-4 col-sm-10">
+	       		<p class="text-center display-4">Track another item:</p>
+	       		<form action="/price-watcher/trackItem" method="POST">
+					<input class="form-control input-spacing" placeholder="URL" type="text" name="paramUrl"> <input
+						type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+				</form>
+	        </div>
+		</div>
+			
 		<c:forEach items="${itemList}" var="item" varStatus="loop"> 
 		  <div class="row bg-light p-4">
 	        	<div class="col-sm-4 d-flex align-items-center">

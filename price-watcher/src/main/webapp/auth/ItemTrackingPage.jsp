@@ -4,9 +4,12 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
 
 <html>
-<jsp:include page="/widgets/header.jsp">
-	<jsp:param name="title" value="Tracking Page" />
-</jsp:include>
+<head>
+	<jsp:include page="/widgets/header.jsp">
+		<jsp:param name="title" value="Tracking Page" />
+	</jsp:include>
+	<jsp:include page="/widgets/TrackingPageAssets.jsp"/>
+</head>
 <body>
 	<jsp:include page="/widgets/nav.jsp"></jsp:include>
 	

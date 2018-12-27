@@ -20,6 +20,7 @@
 			<shiro:authenticated>
 				<li class="nav-item"><a class="nav-link" href="/price-watcher/userLogOut">Log Out</a></li>
 			</shiro:authenticated>
+			<li class="nav-item" id="item-tracking-nav-link"><a class="nav-link" href="/price-watcher/itemTrackingListPage">Your Tracked Items</a></li>
 			<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 		</ul>
 	</div>

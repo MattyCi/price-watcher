@@ -1,0 +1,1 @@
+<script src="/price-watcher/resources/js/trackingUtils.js"></script>

@@ -3,6 +3,7 @@
  */
 
 $(document).ready(function() {
+	highlightNavLink();
 	setPriceColors();
 });
 
@@ -25,4 +26,10 @@ function setPriceColors() {
 			$(this).addClass('text-danger');
 		}
 	});
+}
+
+function highlightNavLink() {
+	console.log("yeet");
+	var itemTrackingNavLinkElement = $('#item-tracking-nav-link');
+	itemTrackingNavLinkElement.addClass("active");
 }

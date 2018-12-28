@@ -1,3 +1,8 @@
+/* Global */
+.bg-pw-light {
+	background-color: #e2e2e2;
+}
+
 /* Home Page */
 .containerControls {
     float: none;

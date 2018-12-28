@@ -1,8 +1,6 @@
-<div class="row bg-light" id="login-selector">
-	<div class="col-sm">
-		<h1 class="display-3 text-center">Log In</h1>
-	</div>
-	<div class="col-sm">
+<div class="row bg-pw-light py-3" id="login-selector">
+	<div class="col-sm-8 offset-sm-2">
+	<h1 class="display-3 text-center">Log In</h1>
 		<form class="login-register-forms" id="loginForm" onsubmit="return checkParams(loginForm);" action="/price-watcher/userLogIn"
 			method="POST">
 			<input id="login_tooltip_open" name="username" class="form-control input-spacing"
@@ -13,11 +11,9 @@
 	</div>
 </div>
 
-<div class="row bg-light" id="register-selector">
-	<div class="col">
+<div class="row bg-pw-light py-3" id="register-selector">
+	<div class="col-sm-8 offset-sm-2">
 		<h1 class="display-3 text-center">Register</h1>
-	</div>
-	<div class="col">
 		<form class="login-register-forms" id="registerForm" onsubmit="return checkParams(registerForm);"
 			action="/price-watcher/userRegister" method="POST">
 			<input id="register_tooltip_open" name="username" class="form-control input-spacing"

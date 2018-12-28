@@ -10,7 +10,7 @@
 	</jsp:include>
 	<jsp:include page="/widgets/TrackingPageAssets.jsp"/>
 </head>
-<body>
+<body class="bg-pw-light">
 	<jsp:include page="/widgets/nav.jsp"></jsp:include>
 	
 	<div class="container-fluid">
@@ -33,9 +33,10 @@
 		
 		<jsp:include page="/widgets/RegisterAndLoginWidgets.jsp"></jsp:include>
 		
-		<div class="row bg-light p-4 justify-content-center">
+		<div class="row p-4 justify-content-center">
        		<div class="pl-4 col-sm-10">
-	       		<p class="text-center display-4">Track another item:</p>
+	       		<h2 class="text-center py-2">Track another item:</h2>
+	       		<!--  TODO: Make the form appear with a button -->
 	       		<form action="/price-watcher/trackItem" method="POST">
 					<input class="form-control input-spacing" placeholder="URL" type="text" name="paramUrl"> <input
 						type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
@@ -44,9 +45,9 @@
 		</div>
 			
 		<c:forEach items="${itemList}" var="item" varStatus="loop"> 
-		  <div class="row bg-light p-4">
+		  <div class="row p-4">
 	        	<div class="col-sm-4 d-flex align-items-center">
-	        		<img class="vertical-align rounded mx-auto d-block" src="https://via.placeholder.com/150"/>
+	        		<img class="vertical-align rounded mx-auto d-block pb-1" src="https://via.placeholder.com/150"/>
 	        	</div>
 	       		<div class="pl-4 col-sm-8">
 		       		<p class="lead text-left">
@@ -60,6 +61,6 @@
 			</div>
 		</c:forEach>
 	</div>
-       
+    <jsp:include page="/widgets/footer.jsp"/>   
 </body>
 </html>

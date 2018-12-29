@@ -11,10 +11,9 @@
 
 	<div class="container">
 	<jsp:include page="/widgets/RegisterAndLoginWidgets.jsp"></jsp:include>
-		<div class="row">
-			<div class="col-sm-8 offset-sm-2 py-3">
-				<h1 class="display-3 text-center">Price Watcher</h1>
-				<img class="vertical-align rounded mx-auto d-block py-2" src="/price-watcher/resources/images/price_bot.png" alt="Price Watcher Logo">
+		<div class="row py-3">
+			<div class="col-sm-8 offset-sm-2">
+				<p class="display-3 text-center">Price Watcher</p>
 				<p class="text-center lead">Get alerted when your favorite items drop in price. Start
 					tracking items below, it's easy!</p>
 				<form action="/price-watcher/trackItem" method="POST">
@@ -25,6 +24,27 @@
 					<input class="form-control input-spacing" placeholder="URL" type="text" name="paramUrl"> <input
 						type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
 				</form>
+			</div>
+		</div>
+		<div class="row pb-3">
+			<div class="col-sm-8 offset-sm-2 py-3">
+				<h2 class="text-center">Most Popular Items</h2>
+			</div>
+			<div class="col-6 py-1">
+				<p class="lead text-center"><a href="#">Example Item</a></p>
+				<img class="vertical-align rounded mx-auto d-block pb-1" src="https://via.placeholder.com/150"/>
+			</div>
+			<div class="col-6 py-1">
+				<p class="lead text-center"><a href="#">Example Item</a></p>
+				<img class="vertical-align rounded mx-auto d-block pb-1" src="https://via.placeholder.com/150"/>
+			</div>
+			<div class="col-6 py-1">
+				<p class="lead text-center"><a href="#">Example Item</a></p>
+				<img class="vertical-align rounded mx-auto d-block pb-1" src="https://via.placeholder.com/150"/>
+			</div>
+			<div class="col-6 py-1">
+				<p class="lead text-center"><a href="#">Example Item</a></p>
+				<img class="vertical-align rounded mx-auto d-block pb-1" src="https://via.placeholder.com/150"/>
 			</div>
 		</div>
 	</div>

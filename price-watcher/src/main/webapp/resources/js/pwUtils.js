@@ -7,7 +7,7 @@ function displayArea(areaToToggle) {
 	if ((areaToToggle !== undefined) && (areaToToggle !== null)) {
 		if (areaToToggle === "login") {
 			if (!loginSelectorFlag) {
-				document.getElementById("login-selector").style.display = "block";
+				document.getElementById("login-selector").style.display = "flex";
 				document.getElementById("login-active-toggle").classList.add("active");
 				loginSelectorFlag = 1;
 			} else {
@@ -15,7 +15,7 @@ function displayArea(areaToToggle) {
 			}
 		} else if (areaToToggle === "register") {
 			if (!registerSelectorFlag) {
-				document.getElementById("register-selector").style.display = "block";
+				document.getElementById("register-selector").style.display = "flex";
 				document.getElementById("register-active-toggle").classList.add("active");
 				registerSelectorFlag = 1;
 			} else {

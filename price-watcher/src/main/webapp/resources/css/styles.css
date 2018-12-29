@@ -38,9 +38,16 @@
 }
 
 /* Tracking Page */
+.btn-text-wrap {
+	white-space: normal;
+}
 
+.bg {
+	background-color: #e2e2e2;
+}
 
 /* Media Breakpoints */
+/* Keep containers fluid for sm */
 @media (max-width: 992px) {
 	.container {
 		max-width: none;

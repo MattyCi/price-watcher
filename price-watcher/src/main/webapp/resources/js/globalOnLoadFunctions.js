@@ -1,5 +1,7 @@
 // on load events
 window.onload = function() {
+	
+	// setup onclick actions for login and register selectors
 	var loginSelectors = document.getElementsByClassName("login-appear");
 	var registerSelectors = document.getElementsByClassName("register-appear");
 	

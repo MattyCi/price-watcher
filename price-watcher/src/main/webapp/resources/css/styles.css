@@ -41,4 +41,14 @@
 
 
 /* Media Breakpoints */
+@media (max-width: 992px) {
+	.container {
+		max-width: none;
+	}
+}
 
+@media (min-width: 992px) {
+	.bg-lg-only {
+		background-color: #e2e2e2;
+	}
+}

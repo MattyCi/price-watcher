@@ -17,11 +17,11 @@
 				<li id="login-active-toggle" class="nav-item"><a id="" class="nav-link login-appear" href="#">Log In</a></li>
 				<li id="register-active-toggle" class="nav-item"><a id="" class="nav-link register-appear" href="#">Register</a></li>
 			</shiro:notAuthenticated>
+			<li class="nav-item" id="item-tracking-nav-link"><a class="nav-link" href="/price-watcher/itemTrackingListPage">Your Tracked Items</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 			<shiro:authenticated>
 				<li class="nav-item"><a class="nav-link" href="/price-watcher/userLogOut">Log Out</a></li>
 			</shiro:authenticated>
-			<li class="nav-item" id="item-tracking-nav-link"><a class="nav-link" href="/price-watcher/itemTrackingListPage">Your Tracked Items</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">About</a></li>
 		</ul>
 	</div>
 </nav>

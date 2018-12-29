@@ -21,7 +21,7 @@
 	</global-results>
 	
     <action name="userLogIn" class="org.matt.auth.ShiroLogInAction">
-    	<result name="success">/auth/UserHomePage.jsp</result>
+    	<result name="success">/Index.jsp</result>
         <result name="error">/error/StandardError.jsp</result>
     </action>
     

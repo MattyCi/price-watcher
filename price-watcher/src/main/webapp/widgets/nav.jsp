@@ -11,7 +11,7 @@
 		<span class="navbar-toggler-icon"></span>
 	</button>
 
-	<div class="navbar-collapse collapse show" id="navbarColor01" style="">
+	<div class="navbar-collapse collapse" id="navbarColor01" style="">
 		<ul class="navbar-nav mr-auto">
 			<shiro:notAuthenticated>
 				<li id="login-active-toggle" class="nav-item"><a id="" class="nav-link login-appear" href="#">Log In</a></li>

@@ -26,7 +26,7 @@
 			</c:when>
 			<c:otherwise>
 				<shiro:notAuthenticated>
-				<div class="row bg-warning p-4">
+				<div class="row justify-content-center bg-warning p-4">
 					<div class="pl-4 col-sm-8">
 						<p class="lead text-center">Hey! It seems you haven't registered yet. Consider registering
 							because...</p>

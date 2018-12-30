@@ -10,6 +10,11 @@ function displayArea(areaToToggle) {
 				document.getElementById("login-selector").style.display = "flex";
 				document.getElementById("login-active-toggle").classList.add("active");
 				loginSelectorFlag = 1;
+				
+				if (registerSelectorFlag == 1) {
+					hideArea("register");
+				}
+				
 			} else {
 				hideArea("login");
 			}
@@ -18,6 +23,11 @@ function displayArea(areaToToggle) {
 				document.getElementById("register-selector").style.display = "flex";
 				document.getElementById("register-active-toggle").classList.add("active");
 				registerSelectorFlag = 1;
+				
+				if (loginSelectorFlag == 1) {
+					hideArea("login");
+				}
+				
 			} else {
 				hideArea("register");
 			}

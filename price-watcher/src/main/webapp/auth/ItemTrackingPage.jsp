@@ -20,7 +20,7 @@
 					<div class="col-sm-12 pt-4">
 						<h2 class="text-center">You haven't tracked any items.</h2>
 						<p class="text-center">Consider tracking some items by entering a URL to a new item, or
-							check out some of our most tracked items.</p>
+							check out some of the most popular items.</p>
 					</div>
 				</div>
 			</c:when>
@@ -30,8 +30,7 @@
 						<div class="col-sm-12 col-lg-10 col-xl-8 accordion" id="register-warning-btn">
 							<button class="btn btn-warning btn-lg btn-block btn-text-wrap" type="button"
 								data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
-								aria-controls="collapseOne">Hey! It seems you haven't registered yet. Consider
-								registering because...</button>
+								aria-controls="collapseOne">Consider registering! Click here to see why.</button>
 							<div id="collapseOne" class="collapse" data-parent="#register-warning-btn">
 								<div class="card-body bg-white">
 									<ol class="text-left">

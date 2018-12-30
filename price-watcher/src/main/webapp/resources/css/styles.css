@@ -47,8 +47,8 @@
 }
 
 /* Media Breakpoints */
-/* Keep containers fluid for sm */
 @media (max-width: 992px) {
+	/* Keep containers fluid for md */
 	.container {
 		max-width: none;
 	}
@@ -57,5 +57,9 @@
 @media (min-width: 992px) {
 	.bg-lg-only {
 		background-color: #e2e2e2;
+	}
+	
+	.container {
+		max-width: 1000px;
 	}
 }

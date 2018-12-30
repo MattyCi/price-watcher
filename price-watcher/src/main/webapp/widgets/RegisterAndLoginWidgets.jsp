@@ -1,4 +1,4 @@
-<div class="row justify-content-center py-3" id="login-selector">
+<div class="row justify-content-center py-2 slide-in-top" id="login-selector">
 	<div class="col-sm-12 col-md-8">
 	<h1 class="display-3 text-center">Log In</h1>
 		<form class="login-register-forms" id="loginForm" onsubmit="return checkParams(loginForm);" action="/price-watcher/userLogIn"
@@ -11,7 +11,7 @@
 	</div>
 </div>
 
-<div class="row justify-content-center py-3" id="register-selector">
+<div class="row justify-content-center py-2 slide-in-top" id="register-selector">
 	<div class="col-sm-12 col-md-8">
 		<h1 class="display-3 text-center">Register</h1>
 		<form class="login-register-forms" id="registerForm" onsubmit="return checkParams(registerForm);"

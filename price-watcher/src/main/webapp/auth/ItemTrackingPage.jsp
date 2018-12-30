@@ -14,6 +14,7 @@
 	<jsp:include page="/widgets/nav.jsp"></jsp:include>
 
 	<div class="container bg-pw-light">
+		<jsp:include page="/widgets/RegisterAndLoginWidgets.jsp"></jsp:include>
 		<c:choose>
 			<c:when test="${empty itemList}">
 				<div class="row">
@@ -46,8 +47,6 @@
 				</shiro:notAuthenticated>
 			</c:otherwise>
 		</c:choose>
-
-		<jsp:include page="/widgets/RegisterAndLoginWidgets.jsp"></jsp:include>
 
 		<div class="row justify-content-center py-2">
 			<div class="col-sm-12 col-lg-10 col-xl-8">

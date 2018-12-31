@@ -3,6 +3,11 @@
 	background-color: #e2e2e2;
 }
 
+.no-pad {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+
 /* Home Page */
 .containerControls {
     float: none;

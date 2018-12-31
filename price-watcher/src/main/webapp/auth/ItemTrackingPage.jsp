@@ -54,7 +54,9 @@
 				<!--  TODO: Make the form appear with a button -->
 				<form action="/price-watcher/trackItem" method="POST">
 					<input class="form-control input-spacing" placeholder="URL" type="text" name="paramUrl">
-					<input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+					<div class="col-md-3 no-pad">
+						<input type="submit" class="btn btn-primary btn-lg btn-block" value="Submit">
+					</div>
 				</form>
 			</div>
 		</div>
@@ -94,6 +96,7 @@
 			</div>
 		</c:forEach>
 		<jsp:include page="/widgets/MostPopularItems.jsp" />
+		<jsp:include page="/widgets/SupportedStores.jsp"/>
 	</div>
 	<jsp:include page="/widgets/footer.jsp" />
 </body>

@@ -1,15 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags"%>
-<!DOCTYPE html>
-<html>
-<jsp:include page="/widgets/header.jsp">
-	<jsp:param name="title" value="Home Page" />
-</jsp:include>
-<body class="bg-lg-only">
-	<jsp:include page="/widgets/nav.jsp"></jsp:include>
-
-	<div class="container bg-pw-light">
+<div class="container bg-pw-light">
 	<jsp:include page="/widgets/RegisterAndLoginWidgets.jsp"></jsp:include>
 		<div class="row justify-content-center py-3">
 			<div class="col-sm-12 col-md-10 col-lg-8">
@@ -32,13 +21,3 @@
 		<jsp:include page="/widgets/MostPopularItems.jsp"/>
 		<jsp:include page="/widgets/SupportedStores.jsp"/>
 	</div>
-
-	<div id="error_tooltip" class="well">
-		<div class="alert alert-dismissible alert-warning">
-			<button class="close error_tooltip_close">&times;</button>
-			<strong id="error_text"></strong>
-		</div>
-	</div>
-	<jsp:include page="/widgets/footer.jsp"/>
-</body>
-</html>

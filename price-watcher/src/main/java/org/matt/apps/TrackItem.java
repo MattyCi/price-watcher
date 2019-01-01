@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-
+import org.jsoup.nodes.Element;
 import org.matt.auth.ShiroBaseAction;
 import org.matt.models.Item;
 import org.matt.models.Store;
@@ -53,6 +53,10 @@ public class TrackItem extends ShiroBaseAction {
 		item.setDateTracked(currentDateSQL);
 		item.setLastPriceChangeDate(currentDateSQL);
 		item.setUrl(paramUrl);
+		
+		// get item image url
+		Element imgElement = doc.select(".productImageZoom").first();
+		item.setImageUrl(imgElement.absUrl("src"));
 		
 		store = populateStore(new Store(), paramUrl);
 		item.setStore(store); // foreign key

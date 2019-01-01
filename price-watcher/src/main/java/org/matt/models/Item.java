@@ -24,6 +24,7 @@ public class Item implements Serializable {
 	private double originalItemPrice;
 	private double itemPriceDifference;
 	private String url;
+	private String imageUrl;
 	
 	private Date dateTracked;
 	private Date lastPriceChangeDate;
@@ -91,6 +92,15 @@ public class Item implements Serializable {
 
 	public void setUrl(String url) {
 		this.url = url;
+	}
+	
+	@Column(name="IMAGE_URL")
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	
 	@Column(name="DATE_TRACKED")

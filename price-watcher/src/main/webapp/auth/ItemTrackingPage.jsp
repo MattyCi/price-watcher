@@ -70,7 +70,7 @@
 		<c:forEach items="${itemList}" var="item" varStatus="loop">
 			<div class="row justify-content-center p-2">
 				<div class="col-sm-4 col-lg-2 d-flex align-items-center">
-					<img class="vertical-align mx-auto rounded d-block pb-1" src="https://via.placeholder.com/150" />
+					<img class="vertical-align mx-auto rounded d-block pb-1" src="<c:out value="${item.getImageUrl()}" />" />
 				</div>
 				<div class="col-sm-8 col-lg-6">
 					<p class="lead">

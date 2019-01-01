@@ -52,6 +52,7 @@ public class TrackItem extends ShiroBaseAction {
 		item.setItemPriceDifference(00.00);
 		item.setDateTracked(currentDateSQL);
 		item.setLastPriceChangeDate(currentDateSQL);
+		item.setUrl(paramUrl);
 		
 		store = populateStore(new Store(), paramUrl);
 		item.setStore(store); // foreign key

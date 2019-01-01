@@ -74,7 +74,7 @@
 				</div>
 				<div class="col-sm-8 col-lg-6">
 					<p class="lead">
-						<a href="<c:out value = "${paramUrl}"/>"><c:out value="${item.getItemName()}" /></a>
+						<a href="<c:out value = "${item.getUrl()}"/>"><c:out value="${item.getItemName()}" /></a>
 					</p>
 					<p>
 						Site:

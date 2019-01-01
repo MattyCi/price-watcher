@@ -23,6 +23,7 @@ public class Item implements Serializable {
 	private double lastItemPrice;
 	private double originalItemPrice;
 	private double itemPriceDifference;
+	private String url;
 	
 	private Date dateTracked;
 	private Date lastPriceChangeDate;
@@ -83,6 +84,15 @@ public class Item implements Serializable {
 		this.itemPriceDifference = itemPriceDifference;
 	}
 
+	@Column(name="URL")
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+	
 	@Column(name="DATE_TRACKED")
 	public Date getDateTracked() {
 		return dateTracked;

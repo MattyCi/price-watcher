@@ -44,7 +44,7 @@ public class TrackItem extends ShiroBaseAction {
 		
 		// populate item data 
 		item = new Item();
-		item.setItemName(doc.select("span[class~=ProductLink_[0-9]+]").attr("data-name"));
+		item.setItemName(doc.select("span[class~=ProductLink_[0-9]+]").first().attr("data-name"));
 		currentItemPrice = Double.parseDouble(doc.select("#pricing").first().ownText());
 		item.setCurrentItemPrice(currentItemPrice);
 		item.setOriginalItemPrice(currentItemPrice);

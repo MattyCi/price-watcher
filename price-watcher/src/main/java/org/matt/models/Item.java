@@ -1,7 +1,7 @@
 package org.matt.models;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,8 +26,8 @@ public class Item implements Serializable {
 	private String url;
 	private String imageUrl;
 	
-	private Date dateTracked;
-	private Date lastPriceChangeDate;
+	private Timestamp dateTracked;
+	private Timestamp lastPriceChangeDate;
 	private Reguser reguser;
 	private Store store;
 	
@@ -104,18 +104,18 @@ public class Item implements Serializable {
 	}
 	
 	@Column(name="DATE_TRACKED")
-	public Date getDateTracked() {
+	public Timestamp getDateTracked() {
 		return dateTracked;
 	}
-	public void setDateTracked(Date dateTracked) {
+	public void setDateTracked(Timestamp dateTracked) {
 		this.dateTracked = dateTracked;
 	}
 	
 	@Column(name="LAST_PRICE_CHANGE")
-	public Date getLastPriceChangeDate() {
+	public Timestamp getLastPriceChangeDate() {
 		return lastPriceChangeDate;
 	}
-	public void setLastPriceChangeDate(Date lastPriceChangeDate) {
+	public void setLastPriceChangeDate(Timestamp lastPriceChangeDate) {
 		this.lastPriceChangeDate = lastPriceChangeDate;
 	}
 	

@@ -1,7 +1,8 @@
 package org.matt.apps;
 
 import java.io.IOException;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.time.Instant;
 
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
@@ -29,8 +30,7 @@ public class TrackItem extends ShiroBaseAction {
 	private Store store = null;
 	private Document doc = null;
 	
-	Date date = new Date();
-	java.sql.Date currentDateSQL = new java.sql.Date(date.getTime());
+	Timestamp currentDateSQL = Timestamp.from(Instant.now());
 
 	public String execute() {
 		

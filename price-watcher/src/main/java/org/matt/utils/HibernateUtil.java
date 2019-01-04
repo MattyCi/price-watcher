@@ -1,5 +1,8 @@
 package org.matt.utils;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
@@ -22,4 +25,8 @@ public class HibernateUtil {
 		return sessionFactory;
 	}
 
+	public static Timestamp getCurrentTimeStamp() {
+		return Timestamp.from(Instant.now());
+	}
+	
 }

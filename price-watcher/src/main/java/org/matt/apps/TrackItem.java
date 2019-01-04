@@ -1,18 +1,13 @@
 package org.matt.apps;
 
-import java.io.IOException;
-import java.sql.Timestamp;
-import java.time.Instant;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.matt.auth.ShiroBaseAction;
+import org.matt.builders.item.ItemBuilder;
+import org.matt.builders.item.ItemDirector;
+import org.matt.builders.item.MicroCenterItemBuilder;
 import org.matt.models.Item;
-import org.matt.models.Store;
 import org.matt.utils.HibernateUtil;
 import org.matt.utils.PWConstants;
 
@@ -25,43 +20,12 @@ import org.matt.utils.PWConstants;
 public class TrackItem extends ShiroBaseAction {
 	private static final long serialVersionUID = 2782991788402520731L;
 	private String paramUrl;
-	private Double currentItemPrice;
-	private Item item = null;
-	private Store store = null;
-	private Document doc = null;
+	private Item item;
 	
-	Timestamp currentDateSQL = Timestamp.from(Instant.now());
-
 	public String execute() {
 		
-		try {
-			System.out.println("paramUrl is: "+paramUrl);
-			doc = Jsoup.connect(paramUrl).get();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		item = buildItem(paramUrl);
 		
-		// populate item data 
-		item = new Item();
-		item.setItemName(doc.select("span[class~=ProductLink_[0-9]+]").first().attr("data-name"));
-		currentItemPrice = Double.parseDouble(doc.select("#pricing").first().ownText());
-		item.setCurrentItemPrice(currentItemPrice);
-		item.setOriginalItemPrice(currentItemPrice);
-		item.setLastItemPrice(currentItemPrice);
-		item.setItemPriceDifference(00.00);
-		item.setDateTracked(currentDateSQL);
-		item.setLastPriceChangeDate(currentDateSQL);
-		item.setUrl(paramUrl);
-		
-		// get item image url
-		Element imgElement = doc.select(".productImageZoom").first();
-		item.setImageUrl(imgElement.absUrl("src"));
-		
-		store = populateStore(new Store(), paramUrl);
-		item.setStore(store); // foreign key
-		item.setReguser(this.getRegUser()); // foreign key
-
 		// actually add the record to the database
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
@@ -80,19 +44,21 @@ public class TrackItem extends ShiroBaseAction {
 	}
 
 	/**
-	 * This method will populate a store object given the URL to a product page from
-	 * their site.
-	 * @param store - the store we want to populate with data
-	 * @param url   - the URL of the item with which we want to extract store data from.
-	 * @return a store object with populated data
+	 * This method determines what store the URL belongs to, and
+	 * subsequently builds an item object for the given store.
+	 * @param url   - the URL of the item with which we want to extract item data from.
+	 * @return an item with populated data.
 	 */
-	public Store populateStore(Store store, String url) {
-
+	public Item buildItem(String url) {
+		ItemBuilder itemBuilder;
+		ItemDirector itemDirector = null;
+		
 		if (url.toLowerCase().contains(PWConstants.microcenterStoreName.toLowerCase())) {
-			store.setStoreID(PWConstants.microcenterStoreId);
-			store.setStoreName(PWConstants.microcenterStoreName);
+			itemBuilder = new MicroCenterItemBuilder(paramUrl, this.regUser);
+			itemDirector = new ItemDirector(itemBuilder);
+			itemDirector.makeItem();
 		}
-		return store;
+		return itemDirector.getItem();
 	}
 	
 	public String getParamUrl() {

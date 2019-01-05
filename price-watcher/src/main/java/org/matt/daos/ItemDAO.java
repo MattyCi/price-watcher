@@ -23,4 +23,17 @@ public class ItemDAO {
 		
 		return itemList;
 	}
+
+	public static List<Item> getMostPopularItems() {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+			
+		String query = "from ITEM order by DATE_TRACKED desc";
+		@SuppressWarnings("unchecked")
+		List<Item> itemList = (List<Item>) session.createQuery(query).setMaxResults(4).list();
+		session.getTransaction().commit();
+		
+		return itemList;
+	}
+	
 }

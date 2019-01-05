@@ -27,12 +27,8 @@ public class ShiroLogInAction extends ActionSupport implements Preparable {
 	public String execute() {
 		String result = PWConstants.error;
 		if (this.shiroUser != null) {
-			Session session = this.shiroUser.getSession();
-			session.setAttribute("UserMailID", this.username);
-			// TODO: create a DAO to retrieve userID and set that value to the session as well
-
 			if (!this.shiroUser.isAuthenticated()) {
-				UsernamePasswordToken token = new UsernamePasswordToken(this.username, this.password);
+				UsernamePasswordToken token = new UsernamePasswordToken(this.username.toLowerCase(), this.password);
 				token.setRememberMe(true);
 				try {
 					this.shiroUser.login(token);

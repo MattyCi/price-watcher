@@ -53,6 +53,8 @@ public class ShiroRegisterAction extends ShiroBaseAction {
 			return PWConstants.error;
 		}
 		
+		username = username.toLowerCase();
+		
 		// convert guest user to registered user
 		registerUser(username, password);
 		

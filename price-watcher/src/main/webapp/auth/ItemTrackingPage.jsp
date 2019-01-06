@@ -16,7 +16,7 @@
 	<div class="container bg-pw-light">
 		<jsp:include page="/widgets/RegisterAndLoginWidgets.jsp"></jsp:include>
 		<c:choose>
-			<c:when test="${empty itemList}">
+			<c:when test="${empty trackedItemList}">
 				<div class="row">
 					<div class="col-sm-12 pt-4">
 						<h2 class="text-center">You haven't tracked any items.</h2>

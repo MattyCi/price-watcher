@@ -6,7 +6,7 @@ import org.hibernate.Transaction;
 import org.matt.auth.ShiroBaseAction;
 import org.matt.builders.item.TrackedItemBuilder;
 import org.matt.builders.item.ItemDirector;
-import org.matt.builders.item.MicroCenterTrackedItemBuilder;
+import org.matt.builders.item.MicroCenterTrackedItemBuilderImpl;
 import org.matt.models.TrackedItem;
 import org.matt.utils.HibernateUtil;
 import org.matt.utils.PWConstants;
@@ -54,7 +54,7 @@ public class TrackItem extends ShiroBaseAction {
 		ItemDirector itemDirector = null;
 		
 		if (url.toLowerCase().contains(PWConstants.microcenterStoreName.toLowerCase())) {
-			itemBuilder = new MicroCenterTrackedItemBuilder(paramUrl, this.regUser);
+			itemBuilder = new MicroCenterTrackedItemBuilderImpl(paramUrl, this.regUser);
 			itemDirector = new ItemDirector(itemBuilder);
 			itemDirector.makeItem();
 		}

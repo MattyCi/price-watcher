@@ -6,30 +6,28 @@ import java.sql.Timestamp;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
 import org.matt.models.Item;
 import org.matt.models.Reguser;
-import org.matt.models.Store;
 import org.matt.models.TrackedItem;
 import org.matt.utils.HibernateUtil;
 import org.matt.utils.ItemUtils;
-import org.matt.utils.PWConstants;
 
-public class MicroCenterTrackedItemBuilder implements TrackedItemBuilder {
-	private Item item;
-	private String url;
-	private Reguser regUser;
+public abstract class TrackedItemBuilderImpl implements TrackedItemBuilder {
+	protected Item item;
+	protected String url;
+	protected Reguser regUser;
 	TrackedItem trackedItem;
 	BigDecimal currentPrice;
 	Document doc;
-
+	
 	/**
-	 * Use this constructor to build item data by using the item's
-	 * URL from the store.
+	 * When extending this class, always call <code>super(url, regUser);</code>
+	 * in the subclass constructor. The superclass constructor will set all
+	 * relevant fields for the object.
 	 * @param url - the URL to grab item data from.
 	 * @param regUser - the currently executing user.
 	 */
-	public MicroCenterTrackedItemBuilder(String url, Reguser regUser) {
+	public TrackedItemBuilderImpl(String url, Reguser regUser) {
 		this.trackedItem = new TrackedItem();
 		this.item = new Item();
 		this.trackedItem.setItem(item);
@@ -46,7 +44,7 @@ public class MicroCenterTrackedItemBuilder implements TrackedItemBuilder {
 	
 	/**
 	 * Use this builder method to automatically populate all data
-	 * for the item object. The object must be instantiated first
+	 * for the tracked item object. The object must be instantiated first
 	 * using the constructor that takes the item URL as a parameter.
 	 */
 	public void buildAll() {
@@ -61,25 +59,16 @@ public class MicroCenterTrackedItemBuilder implements TrackedItemBuilder {
 	}
 
 	public void buildItemName() {
-		trackedItem.getItem().setItemName(
-			doc.select("span[class~=ProductLink_[0-9]+]").first().attr("data-name"));
 	}
 
 	public void buildItemPrices() {
-		currentPrice = new BigDecimal(doc.select("#pricing").first().ownText());
-		trackedItem.setCurrentItemPrice(currentPrice);
-		trackedItem.setOriginalItemPrice(currentPrice);
-		trackedItem.setLastItemPrice(currentPrice);
-		trackedItem.setItemPriceDifference(new BigDecimal("0.00"));
 	}
-	
+
 	public void buildItemUrl() {
 		trackedItem.getItem().setUrl(this.url);
 	}
 
 	public void buildItemImageUrl() {
-		Element imgElement = doc.select(".productImageZoom").first();
-		trackedItem.getItem().setImageUrl(imgElement.absUrl("src"));
 	}
 
 	public void buildItemTrackingDates() {
@@ -88,17 +77,13 @@ public class MicroCenterTrackedItemBuilder implements TrackedItemBuilder {
 		trackedItem.setLastPriceChange(timeStamp);
 	}
 
+	public void buildItemStore() {
+	}
+
 	public void buildTrackedItemReguser() {
 		trackedItem.setReguser(this.regUser);
 	}
 
-	public void buildItemStore() {
-		Store store = new Store();
-		store.setStoreId(PWConstants.microcenterStoreId);
-		store.setStoreName(PWConstants.microcenterStoreName);
-		trackedItem.getItem().setStore(store); // foreign key
-	}
-	
 	public TrackedItem getTrackedItem() {
 		return this.trackedItem;
 	}

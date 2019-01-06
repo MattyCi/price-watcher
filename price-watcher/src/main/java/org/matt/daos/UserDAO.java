@@ -14,35 +14,35 @@ public class UserDAO {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		String query = "from REGUSER where mailID=:email";
+		String query = "from Reguser where mailId=:email";
 		Reguser user = (Reguser) session.createQuery(query)
 				.setParameter("email", email).uniqueResult();
 		session.getTransaction().commit();
 		return user;
 	}
 	
-	public static Reguser getUserByID(int userID) {
+	public static Reguser getUserByID(int userId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		String query = "from REGUSER where userID=:userID";
+		String query = "from Reguser where userId=:userId";
 		Reguser user = (Reguser) session.createQuery(query)
-				.setParameter("userID", userID).uniqueResult();
+				.setParameter("userId", userId).uniqueResult();
 		session.getTransaction().commit();
 		return user;
 	}
 	
 	/**
 	 * Determines whether or not a given user ID is associated with a registered user.
-	 * @param userID
+	 * @param userId
 	 * @return true if the user is a registered user, false if guest user.
 	 */
-	public static boolean isUserRegistered(int userID) {
+	public static boolean isUserRegistered(int userId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		String query = "select count(*) from REGUSER where userID=:userID and mailID is not null";
-		int count = ((Long) session.createQuery(query).setParameter("userID", userID).uniqueResult()).intValue();
+		String query = "select count(*) from Reguser where userId=:userId and mailId is not null";
+		int count = ((Long) session.createQuery(query).setParameter("userId", userId).uniqueResult()).intValue();
 		session.getTransaction().commit();
 		
 		if (count > 0) {
@@ -54,17 +54,17 @@ public class UserDAO {
 	
 	/**
 	 * Determines whether or not a given user ID is associated with the specified token.
-	 * @param userID
+	 * @param userId
 	 * @param token
 	 * @return true if token and id are valid, false if validation failed.
 	 */
-	public static boolean isTokenValid(int userID, String userToken) {
+	public static boolean isTokenValid(int userId, String userToken) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		String query = "select count(*) from REGUSER where userID=:userID and userToken=:userToken";
+		String query = "select count(*) from Reguser where userId=:userId and userToken=:userToken";
 		int count = ((Long) session.createQuery(query)
-				.setParameter("userID", userID).setParameter("userToken", userToken)
+				.setParameter("userId", userId).setParameter("userToken", userToken)
 				.uniqueResult()).intValue();
 		session.getTransaction().commit();
 		

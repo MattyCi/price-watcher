@@ -76,7 +76,7 @@ public class UserUtils {
 	 * @return The integer ID of the newly created guest user.
 	 * @throws HibernateException if there were issues persisting the object.
 	 */
-	public static int createGuestUser(Reguser user) {
+	public static Integer createGuestUser(Reguser user) {
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		Transaction tx = null;
@@ -109,7 +109,7 @@ public class UserUtils {
 			session.close();
 		}
 		
-		return user.getUserID();
+		return user.getUserId();
 	}
 	
 	/**
@@ -143,7 +143,7 @@ public class UserUtils {
 
 		String hashedPassword = new Sha256Hash(plainTextPassword, salt, 1024).toBase64();
 
-		user.setUserPassword(hashedPassword);
+		user.setUserPword(hashedPassword);
 		user.setSalt(salt.toString());
 	}
 	
@@ -156,7 +156,7 @@ public class UserUtils {
 		RandomNumberGenerator randomNum = new SecureRandomNumberGenerator();
 		Object userTokenSalt = randomNum.nextBytes();
 		
-		String tokenHash = new Sha256Hash(user.getUserID().toString(), userTokenSalt, 1024).toBase64();
+		String tokenHash = new Sha256Hash(user.getUserId().toString(), userTokenSalt, 1024).toBase64();
 
 		user.setUserToken(tokenHash);
 	}

@@ -60,7 +60,7 @@ public class UserValidatorInterceptor implements Interceptor {
 					UserUtils.createGuestUser(regUser);
 
 					// set guest cookies
-					Cookie guestIDCookie = new Cookie(PWConstants.guestIDCookieName, regUser.getUserID().toString());
+					Cookie guestIDCookie = new Cookie(PWConstants.guestIDCookieName, regUser.getUserId().toString());
 					guestIDCookie.setPath("/");
 					guestIDCookie.setMaxAge(60 * 60 * 24 * 365);
 					

@@ -1,6 +1,7 @@
 package org.matt.builders.item;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 import org.jsoup.Jsoup;
@@ -9,24 +10,29 @@ import org.jsoup.nodes.Element;
 import org.matt.models.Item;
 import org.matt.models.Reguser;
 import org.matt.models.Store;
+import org.matt.models.TrackedItem;
 import org.matt.utils.HibernateUtil;
+import org.matt.utils.ItemUtils;
 import org.matt.utils.PWConstants;
 
-public class MicroCenterItemBuilder implements ItemBuilder {
+public class MicroCenterTrackedItemBuilder implements TrackedItemBuilder {
 	private Item item;
 	private String url;
 	private Reguser regUser;
-	Double currentPrice;
+	TrackedItem trackedItem;
+	BigDecimal currentPrice;
 	Document doc;
-	
+
 	/**
 	 * Use this constructor to build item data by using the item's
 	 * URL from the store.
 	 * @param url - the URL to grab item data from.
 	 * @param regUser - the currently executing user.
 	 */
-	public MicroCenterItemBuilder(String url, Reguser regUser) {
+	public MicroCenterTrackedItemBuilder(String url, Reguser regUser) {
+		this.trackedItem = new TrackedItem();
 		this.item = new Item();
+		this.trackedItem.setItem(item);
 		this.url = url;
 		this.regUser = regUser;
 		
@@ -46,55 +52,54 @@ public class MicroCenterItemBuilder implements ItemBuilder {
 	public void buildAll() {
 		buildItemName();
 		buildItemPrices();
-		buildUrl();
-		buildImageUrl();
-		buildTrackingDates();
-		buildReguser();
-		buildStore();
+		buildItemUrl();
+		buildItemImageUrl();
+		buildItemStore();
+		this.item = ItemUtils.persistItem(this.item);
+		buildItemTrackingDates();
+		buildTrackedItemReguser();
 	}
 
 	public void buildItemName() {
-		item.setItemName(
+		trackedItem.getItem().setItemName(
 			doc.select("span[class~=ProductLink_[0-9]+]").first().attr("data-name"));
 	}
 
 	public void buildItemPrices() {
-		currentPrice = Double.parseDouble(doc.select("#pricing").first().ownText());
-		item.setCurrentItemPrice(currentPrice);
-		item.setOriginalItemPrice(currentPrice);
-		item.setLastItemPrice(currentPrice);
-		item.setItemPriceDifference(00.00);
+		currentPrice = new BigDecimal(doc.select("#pricing").first().ownText());
+		trackedItem.setCurrentItemPrice(currentPrice);
+		trackedItem.setOriginalItemPrice(currentPrice);
+		trackedItem.setLastItemPrice(currentPrice);
+		trackedItem.setItemPriceDifference(new BigDecimal("0.00"));
 	}
 	
-	public void buildUrl() {
-		item.setUrl(this.url);
+	public void buildItemUrl() {
+		trackedItem.getItem().setUrl(this.url);
 	}
 
-	public void buildImageUrl() {
+	public void buildItemImageUrl() {
 		Element imgElement = doc.select(".productImageZoom").first();
-		item.setImageUrl(imgElement.absUrl("src"));
+		trackedItem.getItem().setImageUrl(imgElement.absUrl("src"));
 	}
 
-	public void buildTrackingDates() {
+	public void buildItemTrackingDates() {
 		Timestamp timeStamp = HibernateUtil.getCurrentTimeStamp();
-		item.setDateTracked(timeStamp);
-		item.setLastPriceChangeDate(timeStamp);
+		trackedItem.setDateTracked(timeStamp);
+		trackedItem.setLastPriceChange(timeStamp);
 	}
 
-	public void buildReguser() {
-		item.setReguser(this.regUser);
+	public void buildTrackedItemReguser() {
+		trackedItem.setReguser(this.regUser);
 	}
 
-	public void buildStore() {
+	public void buildItemStore() {
 		Store store = new Store();
-		store.setStoreID(PWConstants.microcenterStoreId);
+		store.setStoreId(PWConstants.microcenterStoreId);
 		store.setStoreName(PWConstants.microcenterStoreName);
-		item.setStore(store); // foreign key
-		
+		trackedItem.getItem().setStore(store); // foreign key
 	}
-
-	public Item getItem() {
-		return this.item;
+	
+	public TrackedItem getTrackedItem() {
+		return this.trackedItem;
 	}
-
 }

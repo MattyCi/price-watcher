@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.matt.auth.ShiroBaseAction;
 import org.matt.daos.ItemDAO;
-import org.matt.models.Item;
 import org.matt.models.Reguser;
+import org.matt.models.TrackedItem;
 import org.matt.utils.PWConstants;
 
 /**
@@ -17,24 +17,24 @@ import org.matt.utils.PWConstants;
  */
 public class TrackingPageBuilder extends ShiroBaseAction {
 	private static final long serialVersionUID = 5110648783076504658L;
-	private List<Item> itemList;
+	private List<TrackedItem> trackedItemList;
 	private Reguser regUser;
 	private char userType;
 
 	public String execute() {
 
 		// set item list from user ID
-		setItemList(ItemDAO.getItemsByUser(regUser.getUserID()));
+		setTrackedItemList(ItemDAO.getTrackedItemsByUser(regUser.getUserId()));
 
 		return PWConstants.success;
 	}
 
-	public List<Item> getItemList() {
-		return itemList;
+	public List<TrackedItem> getTrackedItemList() {
+		return trackedItemList;
 	}
 
-	public void setItemList(List<Item> itemList) {
-		this.itemList = itemList;
+	public void setTrackedItemList(List<TrackedItem> itemList) {
+		this.trackedItemList = itemList;
 	}
 
 	// used by the interceptor

@@ -70,7 +70,7 @@ public class ShiroRegisterAction extends ShiroBaseAction {
 	}
 
 	public void registerUser(String email, String plainTextPassword) {
-		this.regUser.setMailID(email);
+		this.regUser.setMailId(email);
 
 		UserUtils.generatePassword(this.regUser, plainTextPassword);
 

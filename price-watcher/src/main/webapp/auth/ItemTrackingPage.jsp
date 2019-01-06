@@ -61,36 +61,36 @@
 			</div>
 		</div>
 		
-		<c:if test="${not empty itemList}">
+		<c:if test="${not empty trackedItemList}">
 			<div class="col-12 py-3">
 				<h2 class="text-center">Your Tracked Items</h2>
 			</div>
 		</c:if>
 		
-		<c:forEach items="${itemList}" var="item" varStatus="loop">
+		<c:forEach items="${trackedItemList}" var="trackedItem" varStatus="loop">
 			<div class="row justify-content-center p-2">
 				<div class="col-sm-4 col-lg-2 d-flex align-items-center">
-					<img class="vertical-align mx-auto rounded d-block pb-1" src="<c:out value="${item.getImageUrl()}" />" />
+					<img class="vertical-align mx-auto rounded d-block pb-1" src="<c:out value="${trackedItem.getItem().getImageUrl()}" />" />
 				</div>
 				<div class="col-sm-8 col-lg-6">
 					<p class="lead">
-						<a href="<c:out value = "${item.getUrl()}"/>"><c:out value="${item.getItemName()}"/></a>
+						<a href="<c:out value = "${trackedItem.getItem().getUrl()}"/>"><c:out value="${trackedItem.getItem().getItemName()}"/></a>
 					</p>
 					<p>
 						Site:
-						<c:out value="${item.getStore().getStoreName()}" />
+						<c:out value="${trackedItem.getItem().getStore().getStoreName()}" />
 					</p>
 					<p>
 						Original Price (Since first tracked):
-						<fmt:formatNumber value="${item.getOriginalItemPrice()}" type="currency" />
+						<fmt:formatNumber value="${trackedItem.getOriginalItemPrice()}" type="currency" />
 					</p>
 					<p>
 						Current Price:
-						<fmt:formatNumber value="${item.getCurrentItemPrice()}" type="currency" />
+						<fmt:formatNumber value="${trackedItem.getCurrentItemPrice()}" type="currency" />
 					</p>
 					<p>
 						Price Change: <span class="item-price-change-selector"><fmt:formatNumber
-								value="${item.getItemPriceDifference()}" type="currency" /></span>
+								value="${item.getTrackedItem().getItemPriceDifference()}" type="currency" /></span>
 					</p>
 				</div>
 			</div>

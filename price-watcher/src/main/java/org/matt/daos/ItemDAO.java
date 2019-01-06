@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.matt.models.Item;
+import org.matt.models.TrackedItem;
 import org.matt.utils.HibernateUtil;
 
 /**
@@ -11,24 +12,24 @@ import org.matt.utils.HibernateUtil;
  * @author Matt
  */
 public class ItemDAO {
-	public static List<Item> getItemsByUser(int userID) {
+	public static List<TrackedItem> getTrackedItemsByUser(Integer userId) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 			
-		String query = "from ITEM where USER_ID=:userID order by DATE_TRACKED desc";
+		String query = "from TrackedItem where USER_ID=:userId order by DATE_TRACKED desc";
 		@SuppressWarnings("unchecked")
-		List<Item> itemList = (List<Item>) session.createQuery(query)
-				.setParameter("userID", userID).list();
+		List<TrackedItem> trackedItemList = (List<TrackedItem>) session.createQuery(query)
+				.setParameter("userId", userId).list();
 		session.getTransaction().commit();
 		
-		return itemList;
+		return trackedItemList;
 	}
 
 	public static List<Item> getMostPopularItems() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 			
-		String query = "from ITEM order by DATE_TRACKED desc";
+		String query = "from Item";
 		@SuppressWarnings("unchecked")
 		List<Item> itemList = (List<Item>) session.createQuery(query).setMaxResults(4).list();
 		session.getTransaction().commit();

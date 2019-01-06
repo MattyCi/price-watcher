@@ -32,7 +32,7 @@ public class PriceWatcherRealm extends JdbcRealm {
 
 			// return salted credentials
 			SaltedAuthenticationInfo info = 
-					new UserCredSalt(username, user.getUserPassword(), user.getSalt());
+					new UserCredSalt(username, user.getUserPword(), user.getSalt());
 			return info;
 		} else {
 			System.out.println("Username is null.");

@@ -21,6 +21,7 @@
 		
 		<mapping class="org.matt.models.Reguser"></mapping>
 		<mapping class="org.matt.models.Item"></mapping>
+		<mapping class="org.matt.models.TrackedItem"></mapping>
 		<mapping class="org.matt.models.Store"></mapping>
 		
 	</session-factory>

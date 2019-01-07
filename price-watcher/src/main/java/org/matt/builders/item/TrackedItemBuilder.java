@@ -6,6 +6,8 @@ public interface TrackedItemBuilder {
 
 	void buildAll();
 	
+	void buildItemId();
+	
 	void buildItemName();
 
 	void buildItemPrices();

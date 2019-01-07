@@ -49,6 +49,7 @@ public abstract class TrackedItemBuilderImpl implements TrackedItemBuilder {
 	 */
 	public void buildAll() {
 		buildItemName();
+		buildItemId();
 		buildItemPrices();
 		buildItemUrl();
 		buildItemImageUrl();
@@ -58,6 +59,9 @@ public abstract class TrackedItemBuilderImpl implements TrackedItemBuilder {
 		buildTrackedItemReguser();
 	}
 
+	public void buildItemId() {
+	}
+	
 	public void buildItemName() {
 	}
 

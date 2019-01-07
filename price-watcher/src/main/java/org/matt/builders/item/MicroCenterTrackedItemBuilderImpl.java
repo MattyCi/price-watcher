@@ -14,6 +14,15 @@ public class MicroCenterTrackedItemBuilderImpl extends TrackedItemBuilderImpl im
 	}
 
 	@Override
+	public void buildItemId() {
+		String itemId = Integer.toString(PWConstants.microcenterStoreId);
+		itemId = itemId.concat(doc.select(".SKUNumber").first().html().toString());
+		trackedItem.getItem().setItemId(
+				Integer.parseInt(itemId)
+		);
+	}
+	
+	@Override
 	public void buildItemName() {
 		trackedItem.getItem().setItemName(
 			doc.select("span[class~=ProductLink_[0-9]+]").first().attr("data-name"));
